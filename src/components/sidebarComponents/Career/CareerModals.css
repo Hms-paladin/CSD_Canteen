@@ -1,0 +1,151 @@
+
+.career_title{
+    margin: 8px;
+    padding: 5px;
+}
+.career_role{
+  
+   font-weight: bold;
+}
+.career_location{
+    font-size: 12px;
+}
+.career_jd{
+    margin: 8px;
+    padding: 5px;
+}
+.jd_title{
+    font-weight: bold;
+}
+.description_jd{
+    margin: 8px;
+}
+.description_jd li{
+    line-height: 1.5rem;
+}
+.resume_share{
+    font-weight: bold;
+    text-align: center;
+    margin: 5px;
+}
+.resume_share a{
+    color: #1890ff !important;
+}
+
+/*//Add & Edit Modal*/
+
+.addcareer_head{
+    margin: 15px;
+    padding: 8px;
+}
+.addcareer_title .MuiFormControl-root.MuiTextField-root{
+    width: 100%;
+}
+.addcareer_title, 
+.addcareer_locdate, 
+.addcareer_mailid,
+.addcareer_jobdesc{
+    margin: 10px;
+}
+.addcareer_title .MuiInputBase-input.MuiOutlinedInput-input{
+    height: 2px;
+}
+
+.addcareer_locdate .MuiInputBase-input.MuiOutlinedInput-input{
+    height: 2px;
+}
+
+.addcareer_mailid .MuiFormControl-root.MuiTextField-root{
+    width: 100%;
+}
+.addcareer_mailid .MuiInputBase-input.MuiOutlinedInput-input{
+    height: 2px;
+}
+
+.label_names{
+    font-size: 15px;
+    margin-bottom: 5px;
+    padding-bottom: 5px;
+}
+
+.addcareer_locdate{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 10px;
+}
+
+.addcareer_jobdesc .ck-editor__editable{
+    height: 150px;
+}
+.addcareer_jobdesc .ck-editor__editable:not(.ck-focused){
+    height: 150px;
+}
+.addcareer_jobdesc .ck .ck-toolbar__items{
+    height: 3.5rem ;
+}
+.button_career{
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.addcareer_btn{
+    background-color: rgb(38, 128, 235) !important;
+    color:#fff !important;
+    margin: 10px !important;
+    width: 120px !important;
+}
+.addcareer_btn.MuiButton-root{
+   border-radius: 24px !important;
+}
+
+.delete_career{
+    text-align: center;
+    margin-bottom: 15px;
+    padding-bottom: 12px;
+}
+.button_delcareer{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.delcareer_ok{
+    background-color: rgb(38, 128, 235) !important;
+    color:#fff !important;
+    margin: 10px !important;
+    width: 120px !important;
+}
+.delcareer_ok.MuiButton-root{
+   border-radius: 24px !important;
+}
+.delcareer_cancel{
+  border-radius: 4px solid black !important;
+    margin: 10px !important;
+    width: 120px !important;
+}
+.delcareer_cancel.MuiButton-root {
+    border: 1px solid black !important;
+    border-radius: 24px;
+}
+
+.career_delete {
+    text-align: center;
+}
+
+.modal_date {
+    margin-left: 2rem;
+}
+
+.ant-picker {
+    padding: .5rem .4rem;
+}
+/* .date_picker {
+    z-index: 1400 !important;
+
+} */
+.ant-picker-dropdown.ant-picker-dropdown-placement-bottomLeft {
+    z-index: 1400 !important;
+   
+}
+

@@ -1,0 +1,52 @@
+/* .image-modal {
+    
+    background-color: #fff;
+    position: absolute;
+    top: -33rem;
+    right: 18rem;
+    border-radius: 7px;
+    box-shadow: 0px 3px 4px 3px #ccc;
+} */
+.modal_img{
+    width: 65px;
+    height: 80px;
+    margin: 40px 30px;
+}
+.image-modal{
+    background-color: #fff;
+    border-radius: 5px;
+    box-shadow: 0 0 6px #B2B2B2;
+    /* display: inline-block; */
+    padding: 10px 18px;
+    position: absolute;
+    vertical-align: top;
+    /* bottom: 0px; */
+    right: 82%;
+    /* right: 276px; */
+    top: bottom;
+    position: absolute;
+    bottom: 34px;
+}
+.image-modal::before {
+    background-color: #fff;
+    content: "\00a0";
+    display: block;
+    height: 17px;
+    position: absolute;
+    transform: rotate( 29deg ) skew( -35deg );
+    -moz-transform: rotate( 29deg ) skew( -35deg );
+    -ms-transform: rotate( 29deg ) skew( -35deg );
+    -o-transform: rotate( 29deg ) skew( -35deg );
+    -webkit-transform: rotate( 56deg ) skew( -45deg );
+    bottom: -2px;
+    width: 21px;
+}
+.me {
+    float: right;    
+    margin: 5px 20px 5px 45px;         
+}
+
+.me::before {
+    box-shadow: 2px -2px 2px 0 rgba( 178, 178, 178, .4 );
+    right: -5px;    
+}
