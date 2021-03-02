@@ -3,7 +3,7 @@ import Header from "./components/Header/Header";
 import Sidebar from "./components/sidebar/Sidebar";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
-
+import DashBo from "./components/sidebarComponents/DashBo";
 import Dashboard from "./components/sidebarComponents/Dashboard";
 import ProductManagement from "./components/sidebarComponents/ProductManagement";
 import Orders from "./components/sidebarComponents/Orders";
@@ -67,7 +67,7 @@ const App = ({ isAuthenticated }) => {
           {isAuthenticated && <Sidebar />}
           <Switch>
             {/* Privateroutes */}
-            <PrivateRoute path="/dashboard" component={Dashboard} />
+            <PrivateRoute path="/dashboard" component={DashBo} />
             <PrivateRoute path="/productManagement" component={ProductManagement} />
             <PrivateRoute path="/orders" component={Orders} />
             <PrivateRoute path="/payment" component={PaymentDetails} />
