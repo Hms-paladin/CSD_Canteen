@@ -9,7 +9,7 @@ import InputAdornment from '@material-ui/core/InputAdornment';
 import Eye from '../images/view.png'
 import { Button } from '@material-ui/core';
 
-import { useDispatch } from "react-redux";
+import { useDispatch ,connect} from "react-redux";
 import { login } from "../../actions/auth";
 
 import { withRouter } from "react-router-dom";
@@ -21,7 +21,7 @@ const Login = ({ history }) => {
 
   const dispatch = useDispatch();
 
-
+// console.log("login",user)
   const [loginData, setLoginData] = useState({
     email: "",
     password: ""
@@ -122,7 +122,7 @@ const Login = ({ history }) => {
           <div className="flex2">
             <div className="userlog">User Login</div>
             <div className="email_container">
-              <TextField value={email} type="email" placeholder="" label="EMAIL" name="email" autoComplete="off" onChange={(e) => handleChange(e, "email")}
+              <TextField value={email} type="email" placeholder="" label="Email Address" name="email" autoComplete="off" onChange={(e) => handleChange(e, "email")}
                 onKeyDown={(e) => pressEnter(e)}
                 InputProps={{
                   endAdornment: (
@@ -205,4 +205,11 @@ const Login = ({ history }) => {
   )
 }
 
-export default withRouter(Login);
+
+const mapStateToProps = state => ({
+  // paymentdata:state.payment.paymentdata
+  ...state.auth
+})
+
+export default connect(mapStateToProps)(withRouter(Login));
+// export default withRouter(Login);

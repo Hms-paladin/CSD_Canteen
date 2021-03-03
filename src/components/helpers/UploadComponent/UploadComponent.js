@@ -12,27 +12,21 @@ class UploadComponent extends React.Component {
             imageData:[]
         }
     }
-    
     uploadFile = (e) => {
-    
         if(e.target.files && e.target.files[0].type == "video/mp4") {
             alert("video format not supported")
         }
- 
          if(e.target.files.length !== 0 && e.target.files[0].type !== "video/mp4" ){
             this.setState({fileName:e.target.files[0].name,imageData:e.target.files[0]})
          }
     }
-
     uploadDocument = () => {
         this.props.getFileName && this.props.getFileName(this.state.fileName,this.state.imageData)
         this.setState({fileName:""})
     }
-
     getInstructionFileName = (data) => {
             this.setState({fileName:data})
     }
-
     componentWillReceiveProps(props) {
        if(props.value !== "") {
            this.setState({fileName:props.value})
@@ -51,7 +45,7 @@ class UploadComponent extends React.Component {
             <div className="upload__container--btn">
             <img class="file_icon" src={this.props.icon && this.props.icon} />
 
-            <button className="button_browse-icon upload__pics--btn" onClick={() => this.uploadDocument()}> Upload </button>
+            <button className="button_browse-icon upload__pics--btn" onClick={this.uploadDocument}> Upload </button>
             
             </div>
            

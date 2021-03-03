@@ -8,7 +8,7 @@ import orders from "./orders";
 import products from "./products";
 import instructionmanual from "./instructionmanual";
 import picklistprint from "./picklistprint";
-
+import payment from "./payment";
 export default combineReducers({
         auth,
         dashboard,
@@ -18,6 +18,6 @@ export default combineReducers({
         orders,
         products,
         instructionmanual,
-        picklistprint
+        picklistprint,payment
 })
 

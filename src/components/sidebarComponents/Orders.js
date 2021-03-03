@@ -16,7 +16,7 @@ const Orders = ({ orders,allDetails }) => {
     const dispatch = useDispatch();
 
     useEffect(() => {
-        dispatch(getOrdersList({startDate:new Date(),endDate:new Date()}))
+        dispatch(getOrdersList({startDate:"2021-02-02",endDate:"2021-03-09"}))
     },[dispatch])
 
     const modelopen = (e,id) => {

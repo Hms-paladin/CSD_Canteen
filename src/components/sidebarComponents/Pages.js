@@ -28,7 +28,7 @@ const Pages = ({ pageDetails }) => {
         // });
 
         dispatch(getPageDetails())
-
+        console.log("pagedetails",pageDetails)
         if(pageDetails && pageDetails.length > 0) {
           
             setPageData(pageDetails[pageIndex].pageDetails)
@@ -66,6 +66,7 @@ const Pages = ({ pageDetails }) => {
     const updatePageDetails = () => {
        if(pageData.trim() !== "") {
            dispatch(editPageDetails(pageContentId,pageData))
+           alert("Record saved successfully")
        }else {
            alert("values required")
        }

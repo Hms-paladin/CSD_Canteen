@@ -55,7 +55,6 @@ const Dashboard = ({ orderCount,userCount,dashboardDelivery }) => {
             <div className="card-details">
              <CardComp changeDetails={changeDetails} />
             </div>
-
             <div className="orders">
                 <div>
                 <div>

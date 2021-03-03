@@ -25,6 +25,7 @@ const styles = theme => ({
 
 const DialogTitle = withStyles(styles)(props => {
   const { children, classes, onClose } = props;
+  console.log("dialog",children, classes, onClose)
   return (
     <MuiDialogTitle disableTypography className={classes.root}>
       <Typography variant="h6">{children}</Typography>
@@ -107,7 +108,7 @@ class Modalcomp extends React.Component {
           <DialogContent dividers className="DialogContent">
             {this.props.children}
           </DialogContent>
-          {/*<DialogActions>
+          {/* <DialogActions>
           <div>
            <Button className="closebtn" >
               Close
@@ -116,7 +117,7 @@ class Modalcomp extends React.Component {
               Create 
             </Button>
             </div>
-          </DialogActions>*/}
+          </DialogActions> */}
         </Dialog>
       </div>
     );

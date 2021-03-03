@@ -33,13 +33,13 @@ const InstructionManual = ({ instructionData,instructionLanguage }) => {
     }
 
     const getInstructionLanguages = () => {
-        console.log("sdfasdlflgasgfsadf",instructionLanguage)
+        console.log("getInstructionLanguages",instructionLanguage)
         let instructionLanguages = [];
         for(let i=0;i<instructionLanguage.length;i++) {
                 instructionLanguages.push(<Option key={i+1} value={instructionLanguage[i].instructionId}>{instructionLanguage[i].instructionLanguage}</Option>)
         }
 
-        console.log("sadfgsad",instructionLanguages)
+        console.log("getInstructionLanguages",instructionLanguages)
         return instructionLanguages;
     }
 
@@ -74,7 +74,7 @@ const InstructionManual = ({ instructionData,instructionLanguage }) => {
                     <div className="lang__label">
                       <label>Language</label>
                     </div>
-                <Select value={instructionLang !== "" && instructionLang} style={{width:"120%"}} onChange={(data) => handleLanguage(data)}>
+                <Select defaultValue={instructionLang !== "" && instructionLang} style={{width:"120%"}} onChange={(data) => handleLanguage(data)}>
                          {instructionLanguage && instructionLanguage.length > 0 && getInstructionLanguages()}
                 </Select> 
             

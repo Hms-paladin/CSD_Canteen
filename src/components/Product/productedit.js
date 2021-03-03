@@ -23,7 +23,7 @@ const Productedit = ({ productView,closemodal,subCategory=[] }) => {
     const [productError,setProductError] = useState(false)
 
     useEffect(() => {
-        dispatch(getSubCategory(productView.productId))
+        // dispatch(getSubCategory(productView.productId))
         console.log(productView,"productView")
     },[])
     
@@ -79,7 +79,7 @@ const Productedit = ({ productView,closemodal,subCategory=[] }) => {
             <img className="proimg" src={fileName !== "" ? URL.createObjectURL(imageData) : productView ? productView.productMedia : null } alt="productimage"  />
 
             {/* upload  */}
-            <input type="file" id={"fileupload"} onChange={(e) => uploadFile(e)} className="hideFile" onClick={(e) => e.currentTarget.value = null }  />
+            <input type="file" id={"fileupload"} onChange={(e) => uploadFile(e)} className="hideFile" onClick={(e) => e.currentTarget.value}  />
         </div>
 
         </div>

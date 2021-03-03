@@ -15,7 +15,7 @@ export const getNewArrivals = () => async dispatch =>{
         const url = `${apiurl}getNewArraivalListWeb`;
 
         const body = {
-            "categoryId":6,
+            "categoryId":1,
             "subCategoryId":1,
             "limit":5,
             "pageno":1

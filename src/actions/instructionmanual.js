@@ -34,11 +34,11 @@ export const updateInstruction = (instructionId,imageArray) => async dispatch =>
         const config = {
             headers: { 'content-type': 'multipart/form-data' }
         }
-        console.log("sadfljhasdjfhasdjf",formData)
+        console.log("updateInstruction",formData,instructionId,imageArray)
         await axios.put(url,formData,config)
         dispatch(getInstructionData())
         
     } catch (err) {
-        
+        console.log("updateInstruction Error",err)
     }
 }

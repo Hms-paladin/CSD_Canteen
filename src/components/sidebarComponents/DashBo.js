@@ -24,10 +24,11 @@ const DashBo = () => {
         }
     return (
         <div  className="main-content">
-         <Container fluid={true}>
+        
          <TableHeader title="Dashboard" />
-       
-       <Row xl="3" style={{margin:"10px"}}>
+         <Container fluid={true}>
+           
+       <Row  style={{margin:"60px 10px"}}>
        
            {/* ____________________ */} 
            <Col>    
@@ -78,7 +79,7 @@ const DashBo = () => {
            <Col>
            <div  style={{margin:"20px 10px",border:'1px solid #F6F6F6',boxShadow:'3px 3px 3px 3px #DEDEDE'}}>
                <p>Yearly Graph</p>
-               <Chart options={{}} series={[44,15]} width="580" />
+               <Chart options={options} series={[44,15]} width="580" />
                </div></Col>
        </Row>
          {/* ----------------------------------- */}

@@ -11,7 +11,7 @@ const PickListPrint = ({ picklistdata }) => {
 
     useEffect(() => {
         dispatch(getPrintListData())
-    })
+    },[])
     return(
             <div className="main-content">
                 <TableHeader title="Pick List Print" />

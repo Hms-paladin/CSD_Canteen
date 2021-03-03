@@ -10,17 +10,13 @@ export const getPrintListData = () => async dispatch => {
                 "Content-Type":"application/json"
             }
         }
-
         const body = {
             // date: dateformat(new Date(), "yyyy-mm-dd")
-            date:"2020-11-30"
+            date:"2021-2-2"
         }
-
-        const url = `${apiurl}getPickListDetailsWeb`
-        const res = await axios.post(url,body,config)
-
-        dispatch({type:GET_PICKLIST_DATA,payload:res.data.data})
-    } catch (err) {
-        
+        const url = `${apiurl}getPickListDetailsWeb`;
+        const res = await axios.post(url,body,config);
+        dispatch({type:GET_PICKLIST_DATA,payload:res.data.data});
+    } catch (err) {  
     }
 }
