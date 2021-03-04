@@ -1,0 +1,88 @@
+.imagecontedit{
+    width: 30%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 25px;
+    position: relative;
+}
+.prolabel{
+    position: absolute;
+    top: 0px;
+    left: 30px;
+    display: flex;
+    align-items: center;
+}
+.prolabel svg{
+    fill: red;
+    width: 15px;
+    height: 15px;
+    position: absolute;
+    top: 5px;
+    margin-left: 5px;
+}
+.editimage{
+    padding: 35px;
+    box-shadow: 0px 0px 4px 1px #ccc;
+    position: relative;
+}
+.productedit_flex{
+    display: flex;
+}
+.editicon{
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    cursor: pointer;
+}
+.editicon svg{
+    width: 20px;
+    height: 20px;
+    fill: green;
+}
+
+/* hover */
+.tooltip {
+    visibility: hidden;
+    position: absolute;
+    right: -320px;
+    top: 19px;
+    z-index: 1;
+    width: 300px;
+    padding: 10px;
+  }
+  
+.tooltip-on-hover:hover + .tooltip {    
+    visibility: visible; 
+    background-color: white;
+    box-shadow: 0px 0px 4px 1px #ccc;
+
+    
+    
+}
+.dots{
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background-color: black;
+    margin-right: 5px;
+}
+.submitbtn{
+    background-color:#5377EE !important;
+    color: white !important;
+    border-radius: 25px !important;
+    padding: 6px 20px !important;
+    width: 120px;
+    margin-top: 30px !important;
+    font-weight: 600;
+}
+.cancelbtn{
+    background-color:#ddd !important;
+    color: black !important;
+    border-radius: 25px !important;
+    padding: 6px 20px !important;
+    width: 120px;
+    margin-top: 30px !important;   
+     font-weight: 600;
+
+}

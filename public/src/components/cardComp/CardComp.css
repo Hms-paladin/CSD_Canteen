@@ -1,0 +1,40 @@
+.card-clr-0{
+    background-color:#6698FF;
+    width: 18rem;
+    padding: .4rem 0rem;
+}
+
+.card-clr-1 {
+    background-color: #ff726f;
+    width: 18rem;
+    padding: .4rem 0rem;
+}
+
+
+.card {
+  cursor: pointer;
+}
+
+
+.card-clr-2 {
+    background-color: #38ffff;
+    width: 18rem;
+    padding: .4rem 0rem;
+}
+  .card-clr-text {
+    color: #fff;
+    padding: 0 3rem;
+  }
+  
+  .card-line {
+    border-bottom: 2px solid black;
+  }
+  
+  .card-arrow {
+    color: #fff;
+  }
+  
+  .card-sec-half {
+    display: flex;
+    padding: 1rem 0;
+  }

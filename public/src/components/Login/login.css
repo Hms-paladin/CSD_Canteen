@@ -1,0 +1,197 @@
+.login_container{
+    background-image: url("../images/bg.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.logincard{
+    display: flex;
+    border-radius: 20px !important;
+    box-sizing: border-box;
+    box-shadow:3px 3px 5px 5px #ccc;    
+    width: 60%;
+    min-width: 550px;
+}
+.forgotcard{
+    min-width: 700px !important;
+}
+.forgottxt{
+color: white;
+    margin: 0px 30px;
+    text-align: center;
+}
+.flex1{
+    width: 50%;
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-top-left-radius: 15px;
+    border-bottom-left-radius: 15px;
+}
+.flex2{
+    background-color: #5e6829;
+    width: 50%;
+    border-top-right-radius: 15px;
+    border-bottom-right-radius: 15px;
+
+}
+.flex1 img{
+    width: 120px;
+    height: 120px;
+}
+.caps{
+    color: #5e6829;
+    font-size: 24px;
+    font-weight: 500;
+    letter-spacing: 6px;
+}
+.userlog{
+    display: flex;
+    font-size: 30px;
+    color: #fff;
+    justify-content: center;
+    margin: 40px 0px 30px 0px;
+}
+.email_container{
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.email_container .MuiFormControl-root{
+    width: 90% !important;
+}
+.email_container .MuiFormLabel-root{
+    color: #fff !important;
+}
+.logineye_icon{
+    width: 22px;
+    height: 22px;
+}
+
+.email_container .MuiInput-underline:before{
+    border-bottom: 1px solid #fff !important;
+}
+.email_container .MuiInput-underline:after {
+    border-bottom: 1px solid #ddd !important;
+
+}
+.email_container .MuiInputBase-input{
+    padding: 15px 0 15px;
+}
+.email_container .MuiInputBase-root{
+color: #fff !important;
+}
+/* input:-internal-autofill-selected {
+    appearance: none !important;
+    background-color: red !important;
+    background-image: none !important;
+    color:  red!important;
+} */
+.loginbtn{
+    display: flex;
+    justify-content: center;
+    margin: 35px 0px 10px 0px;
+}
+.loginbtn Button{
+    background-color: #fff;
+    width: 55%;
+    border-radius: 40px;
+    color: #5e6829;
+    height: 40px;
+    font-size: 22px;
+    font-weight: 500;
+    text-transform: none;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+}
+.loginbtn Button:hover{
+    background-color: #fff;
+   color: #5e6829;
+   
+}
+.frgtpass{
+    display: flex;
+    justify-content: center;
+    margin:15px 0px 30px 15px;
+    color: #fff;
+    cursor: pointer;
+}
+
+.error {
+    padding-left: 1.2rem;
+    color: #FF0000;
+    margin-top: .5rem;
+}
+
+.quicklinks {
+    display: flex;
+    justify-content: space-around;
+    padding-bottom: 20px;
+}
+
+.quicklinks button {
+    white-space: nowrap;
+    padding: 5px;
+    /* color: #fff !important; */
+}
+
+
+
+/* login modal*/
+/*******************************
+* MODAL AS LEFT/RIGHT SIDEBAR
+* Add "left" or "right" in modal parent div, after class="modal".
+* Get free snippets on bootpen.com
+*******************************/
+.modal.left .modal-dialog,
+.modal.right .modal-dialog {
+    position: fixed;
+    margin: auto;
+    width: 320px;
+    height: 100%;
+    -webkit-transform: translate3d(0%, 0, 0);
+        -ms-transform: translate3d(0%, 0, 0);
+         -o-transform: translate3d(0%, 0, 0);
+            transform: translate3d(0%, 0, 0);
+}
+
+.modal.left .modal-content,
+.modal.right .modal-content {
+    height: 100%;
+    overflow-y: auto;
+}
+
+.modal.left .modal-body,
+.modal.right .modal-body {
+    padding: 15px 15px 80px;
+}
+
+/*Right*/
+.modal.right.fade .modal-dialog {
+    right: -320px;
+    -webkit-transition: opacity 0.3s linear, right 0.3s ease-out;
+       -moz-transition: opacity 0.3s linear, right 0.3s ease-out;
+         -o-transition: opacity 0.3s linear, right 0.3s ease-out;
+            transition: opacity 0.3s linear, right 0.3s ease-out;
+}
+
+.modal.right.fade.in .modal-dialog {
+    right: 0;
+}
+
+/* ----- MODAL STYLE ----- */
+.modal-content {
+    border-radius: 0;
+    border: none;
+}
+
+.modal-header {
+    border-bottom-color: #EEEEEE;
+    background-color: #FAFAFA;
+}

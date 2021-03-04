@@ -19,8 +19,8 @@ const PickListPrint = ({ picklistdata }) => {
                 <TableComponent
                 heading={[
                     { id: "", label: "S.No" },
-                    { id: "date", label: "Order Date" },
-                    { id: "numberoforder", label: "Number Of Orders" },
+                    { id: "date", label: "Date" },
+                    { id: "numberoforder", label: "Number Of Order" },
                     { id: "", label: "Action" }           
                 ]}
             

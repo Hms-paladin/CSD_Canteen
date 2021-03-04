@@ -1,0 +1,37 @@
+.productview_flex{
+    display: flex;
+    padding: 15px;
+}
+.imagecont{
+    width: 30%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.productdetail{
+    width: 70%;
+    padding: 50px;
+    display: flex;
+    justify-content: space-around;
+    align-items: space-around;
+    font-size: 16px;
+}
+.proimg{
+    width: 90%;
+    height: 90%;
+}
+.productdetailleft{
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+.productdetailright{
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+.heads{
+    font-weight: 600;
+}
