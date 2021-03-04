@@ -1,4 +1,4 @@
-import React,{useEffect} from "react";
+import React,{useEffect, useState} from "react";
 import TableHeader from "../tableHeader/TableHeader";
 import TableComponent from "../tableComponent/TableComponent";
 import {useDispatch,connect} from "react-redux";
@@ -12,15 +12,16 @@ const PaymentDetails = ({ paymentdata }) => {
     useEffect(() => {
         dispatch(getPaymentListData())
     },[])
+    const [show,setShow] = useState(true)
     return(
         <div className="main-content">
-        <TableHeader title="Payment Details" showDocuments={true} />
+        <TableHeader title="Payment Details" showDatePicker={show ? true : false} showDocuments={true} />
 
         <div className="main-content-details">
     <TableComponent
      heading={[
         { id: "", label: "S.No" },
-        { id: "orderid", label: "Order Id" },
+        { id: "orderid", label: "Order Id" },  { id: "date", label: "Order Date" },,
         { id: "orderamount", label: "Order Amount" },
         { id: "name", label: "Name" },
         { id: "bankname", label: "Bank Name" }, 

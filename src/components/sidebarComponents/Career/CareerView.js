@@ -26,8 +26,7 @@ const CareerView = () => {
                 <li>
                 &#9675; Adjusts content of sales presentations by studying the type of sales outlet or trade factor.  
                 </li>
-                <li>
-                
+                <li>  
                 </li>
             </ul>
         </div>

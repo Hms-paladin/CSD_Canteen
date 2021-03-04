@@ -32,9 +32,7 @@ export const login = ({email,password},history) => async dispatch => {
             type:LOGIN_SUCCESS,
             payload: {data:res.data.data,token:res.data.token}
         })
-
         dispatch(loadUser())
-        
         history.push("/dashboard")
     } catch (err) {
         console.error(err)

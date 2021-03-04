@@ -16,7 +16,7 @@ import { withRouter } from "react-router-dom";
 
 
 
-const Login = ({ history }) => {
+const Login = ({ history,authMsg }) => {
 
 
   const dispatch = useDispatch();
@@ -43,7 +43,9 @@ const Login = ({ history }) => {
   const [hidden, setHidden] = useState(true)
   
   useEffect(() => {
+
   },[showModal]);
+  
 
 
   const toggleshow = () => {
@@ -103,7 +105,10 @@ const Login = ({ history }) => {
     }
 
     if (email && password !== "") {
-      dispatch(login({ email, password }, history))
+      dispatch(login({ email, password }, history));
+      if(!authMsg){
+        alert("Authentication Failed")
+      }
     }
 
   }
@@ -206,9 +211,10 @@ const Login = ({ history }) => {
 }
 
 
+
 const mapStateToProps = state => ({
-  // paymentdata:state.payment.paymentdata
-  ...state.auth
+  authMsg:state.auth.isAuthenticated
+  // ...state.auth
 })
 
 export default connect(mapStateToProps)(withRouter(Login));

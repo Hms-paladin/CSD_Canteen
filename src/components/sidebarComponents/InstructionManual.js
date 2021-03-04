@@ -33,13 +33,13 @@ const InstructionManual = ({ instructionData,instructionLanguage }) => {
     }
 
     const getInstructionLanguages = () => {
-        console.log("getInstructionLanguages",instructionLanguage)
+        console.log("getInstructionLanguages __________________________",instructionLanguage)
         let instructionLanguages = [];
         for(let i=0;i<instructionLanguage.length;i++) {
                 instructionLanguages.push(<Option key={i+1} value={instructionLanguage[i].instructionId}>{instructionLanguage[i].instructionLanguage}</Option>)
         }
 
-        console.log("getInstructionLanguages",instructionLanguages)
+        console.log("getInstructionLanguages____________________________",instructionLanguages)
         return instructionLanguages;
     }
 
@@ -97,9 +97,9 @@ const InstructionManual = ({ instructionData,instructionLanguage }) => {
                         { id: "", label: "Action" }
                     ]}
             
-                
+        
                     rowdata={instructionData && instructionData.length > 0 ? instructionData : []}
-                
+                    instructionManual="true"
                     // actionclose="close"
                 
                     EditIcon="open"
@@ -124,7 +124,8 @@ const InstructionManual = ({ instructionData,instructionLanguage }) => {
 
 const mapStateToProps = state => ({
     instructionData:state.instructionmanual.instructionData,
-    instructionLanguage:state.instructionmanual.instructionLanguage
+    instructionLanguage:state.instructionmanual.instructionLanguage,
+
 })
 
 

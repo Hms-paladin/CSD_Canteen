@@ -105,8 +105,12 @@ class TableHeader extends React.Component {
                 style={{ marginRight: "15px", marginLeft: "15px" }}
             />  }
 
-            {this.state.appointlistData.length===0 ? <ReactSVG  onClick={this.Notification} src={excel} style={{ marginRight: "15px" }} /> :
-                    <ExcelFile filename={"Appointment List"} element={<ReactSVG src={excel} style={{ marginRight: "15px" }} />}>
+            {this.state.appointlistData.length===0 ? <ReactSVG  onClick={this.Notification} src={excel} 
+            style={{ marginRight: "15px" }}
+             /> :
+                    <ExcelFile filename={"Appointment List"} element={<ReactSVG src={excel} 
+                    style={{ marginRight: "15px" }}
+                     />}>
                     <ExcelSheet  name="Appointment List"/>
                     </ExcelFile>
             }

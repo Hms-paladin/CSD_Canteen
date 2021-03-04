@@ -19,7 +19,7 @@ export default function(state=initalState,action) {
                     orderDate,
                     cardNumber,
                     userName,
-                    orderTotalAmount,
+                 orderTotalAmount,
                     id:orderId
                 })
             })

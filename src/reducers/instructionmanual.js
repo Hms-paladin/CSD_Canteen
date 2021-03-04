@@ -14,15 +14,14 @@ export default function(state=initalState,action) {
         case GET_INSTRUCTION_DATA:
             let instructionData = [];
             payload && payload.length > 0 && payload.map((data) => {
-                const {instructionLanguage,instructionFileName,instructionLastUpdateOn,instructionId} = data;
+                const {instructionLanguage,instructionFileName,instructionLastUpdateOn,instructionId,instructionFileURL} = data;
                 instructionData.push({
                     instructionLanguage,
                     instructionFileName,
                     instructionLastUpdateOn:dateformat(instructionLastUpdateOn,"dd mmm yyyy"),
-                    id:instructionId
+                    id:instructionId,pdfURL:instructionFileURL
                 })
             })
-
             return {...state,instructionData}
         case GET_INSTRUCTION_LANGUAGE:
             return{...state,instructionLanguage:payload}    

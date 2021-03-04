@@ -23,22 +23,16 @@ const PickListPrint = ({ picklistdata }) => {
                     { id: "numberoforder", label: "Number Of Orders" },
                     { id: "", label: "Action" }           
                 ]}
-            
                 rowdata={picklistdata && picklistdata.length > 0 ? picklistdata : []}
-        
                 DeleteIcon="close"
                 EditIcon="close"
-                
                 UploadIcon="close"
                 GrandTotal="close"
                 Workflow="close"
                 checkbox="close"
-
                 modelopen={(e,id) => this.modelopen(e,id)}
                 // props_loading={this.state.props_loading}
                 specialProp={true}
-
-
         />
                 </div>
             </div>

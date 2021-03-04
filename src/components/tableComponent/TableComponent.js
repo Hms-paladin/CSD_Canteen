@@ -18,11 +18,6 @@ import { Checkbox } from 'antd';
 import ViewImageModal from "../helpers/ViewImageModal/ViewImageModal";
 
 
-
-
-
-
-
 // standard icons
 import DeleteIcon from "@material-ui/icons/Delete";
 import EditIcon from '@material-ui/icons/Edit';
@@ -31,11 +26,7 @@ import VisibilityIcon from '@material-ui/icons/Visibility';
 import { ReactSVG } from "react-svg";
 
 import pdf  from "../images/pdf.svg"
-
-
-
-
-
+//css
 import "./TableComponent.css";
 
 const axios = require('axios');
@@ -73,6 +64,7 @@ function getSorting(order, orderBy) {
 
 
 function EnhancedTableHead(props) {
+
   const {
     onSelectAllClick,
     order,
@@ -84,16 +76,17 @@ function EnhancedTableHead(props) {
   const createSortHandler = property => event => {
     onRequestSort(event, property);
   };
-  const headRows = [
-    { id: "sno", label: "S.No" },
-    { id: "patient", label: "Customer" },
-    { id: "gender", label: "Gender" },
-    { id: "age", label: "Age" },
-    { id: "time", label: "Time" },
-    { id: "service", label: "Service" },
-    { id: "action", label: "Action" }
-  ];
+  // const headRows = [
+  //   { id: "sno", label: "S.No" },
+  //   { id: "patient", label: "Customer" },
+  //   { id: "gender", label: "Gender" },
+  //   { id: "age", label: "Age" },
+  //   { id: "time", label: "Time" },
+  //   { id: "service", label: "Service" },
+  //   { id: "action", label: "Action" }
+  // ];
   console.log(props.heading, "heading")
+  console.log(props.rowdata,"rowdata")
 
   return (
 
@@ -108,8 +101,9 @@ function EnhancedTableHead(props) {
           >
             <TableSortLabel
               active={orderBy === row.id}
+              hideSortIcon={row.id==""?true:false}
               direction={order}
-              onClick={createSortHandler(row.id)}
+              onClick={row.id==""?false: createSortHandler(row.id)}
             >
               {row.label}
             </TableSortLabel>
@@ -212,7 +206,7 @@ const TablePaginationActionsWrapped = withStyles(actionsStyles, { withTheme: tru
 export default class Tablecomponent extends Component {
   constructor(props) {
     super(props);
-
+ console.log(this.props.rowdata,"____________________________-rowdata")
     this.state = {
       order: "",
       open: false,
@@ -225,7 +219,8 @@ export default class Tablecomponent extends Component {
       rows: this.props.rowdata,
       viewdata: null,
       type: "",
-      title: ""
+      title: "",
+      pdfurl:this.props.pdfURL
     };
   }
 
@@ -307,10 +302,8 @@ export default class Tablecomponent extends Component {
               {/* {this.props.modeprop && 
               <div className="mode__style">
                 <div className="mode__style--container">
-                <div className="mode__style--line">Mode of Payment
-               
-                  </div>
-                  </div> 
+                <div className="mode__style--line">Mode of Payment </div>
+                </div> 
               </div>} */}
               <EnhancedTableHead
                 numSelected={this.state.selected.length}
@@ -343,65 +336,101 @@ export default class Tablecomponent extends Component {
                     return (
                       <TableRow
                         hover
-                        onClick={event => this.handleClick(event, row.name)}
+                        onClick={(event) => this.handleClick(event, row.name)}
                         role="checkbox"
                         tabIndex={-1}
                         key={index}
                       >
-                      {!this.props.blockSno && <TableCell
-                          component="th"
-                          id={labelId}
-                          scope="row"
-                          padding="none"
-                        >
-                          {this.state.rowsPerPage * this.state.page - 1 + index + 2}
-                      </TableCell> }
-
-                        {[row].map(((data, index) => {
-                          console.log(row, "tyu")
-                          var keys = Object.keys(data)
-                          // console.log(keys.length,"tabledata")
-
-                          var arrval = []
-                          for (var m = 0; m < keys.length - 1; m++) {
-                            arrval.push(<TableCell key={data.id + "" + m}>{data[keys[m]]}</TableCell>)
-                          }
-                          return arrval
-                        })
+                        {!this.props.blockSno && (
+                          <TableCell
+                            component="th"
+                            id={labelId}
+                            scope="row"
+                            padding="none"
+                          >
+                            {this.state.rowsPerPage * this.state.page -
+                              1 +
+                              index +
+                              2}
+                          </TableCell>
                         )}
 
-                      
+                        {[row].map((data, index) => {
+                          console.log(row, "tyu");
+                          var keys = Object.keys(data);
+                          // console.log(keys.length,"tabledata")
 
-                        {this.props.actionclose === "close" ? null :
-                          <TableCell style={{position:"relative"}} className={`${this.props.tableicon_align }`}>
-
-                            {this.props.VisibilityIcon === "close" ? null :
-                              <VisibilityIcon className="tableeye_icon" onClick={() => this.props.modelopen("view", row.id)}  />}
-                               
-                    
-                              {
-                                 row.id === this.props.clickedId && this.props.viewModal && <ViewImageModal className="image_mod" productId={this.props.clickedId && this.props.clickedId} />
-                              }
-
-                          {this.props.pdfDownload === "close" ? null : 
-                            <a href={"http://52.200.251.222/canteenUploads/instruction1_CancelledHistory (5).pdf"} download>{<img src={pdf} alt="pdf" />}</a>
+                          var arrval = [];
+                          for (var m = 0; m < keys.length - 1; m++) {
+                            arrval.push(
+                              <TableCell key={data.id + "" + m}>
+                                {data[keys[m]]}
+                              </TableCell>
+                            );
                           }
-                            {this.props.EditIcon === "close" ? null :
-                              <EditIcon className="tableedit_icon" onClick={() => this.props.modelopen("edit", row.id)} />}
+                          return arrval;
+                        })}
 
-                            {this.props.DeleteIcon === "close" ? null :
-                              <DeleteIcon className="tabledelete_icon" onClick={() => this.props.deleteopen("delete", row.id)} />}
+                        {this.props.actionclose === "close" ? null : (
+                          <TableCell
+                            style={{ position: "relative" }}
+                            className={`${this.props.tableicon_align}`}
+                          >
+                            {this.props.VisibilityIcon === "close" ? null : (
+                              <VisibilityIcon
+                                className="tableeye_icon"
+                                onClick={() =>
+                                  this.props.modelopen("view", row.id)
+                                }
+                              />
+                            )}
 
+                            {row.id === this.props.clickedId &&
+                              this.props.viewModal && (
+                                <ViewImageModal
+                                  className="image_mod"
+                                  productId={
+                                    this.props.clickedId && this.props.clickedId
+                                  }
+                                />
+                              )}
 
-                          </TableCell>}
-                          {this.props.checkbox === "close" ? null :
-                          <TableCell className={`${this.props.tableicon_align}`}>
+                       
+                             {this.props.pdfDownload === "close"  
+                              ? null :this.props.instructionManual === "true"?
+                               [row].map((data, k) => {
+                               return <span key={k}><a  href={data.pdfURL} target='blank'  download>{<img src={pdf} alt="pdf" />}</a></span> 
+                             
+                             })
+                             :null}
+                            {this.props.EditIcon === "close" ? null : (
+                              <EditIcon
+                                className="tableedit_icon"
+                                onClick={() =>
+                                  this.props.modelopen("edit", row.id)
+                                }
+                              />
+                            )}
 
-                            {this.props.checkbox === "close" ? null :
-                              <Checkbox className="checkbox_row"  />}
-                            
-                          </TableCell>}
-                          
+                            {this.props.DeleteIcon === "close" ? null : (
+                              <DeleteIcon
+                                className="tabledelete_icon"
+                                onClick={() =>
+                                  this.props.deleteopen("delete", row.id)
+                                }
+                              />
+                            )}
+                          </TableCell>
+                        )}
+                        {this.props.checkbox === "close" ? null : (
+                          <TableCell
+                            className={`${this.props.tableicon_align}`}
+                          >
+                            {this.props.checkbox === "close" ? null : (
+                              <Checkbox className="checkbox_row" />
+                            )}
+                          </TableCell>
+                        )}
                       </TableRow>
                     );
                   })}

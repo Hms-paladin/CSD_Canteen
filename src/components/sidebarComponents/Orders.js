@@ -26,7 +26,7 @@ const Orders = ({ orders,allDetails }) => {
 
         setOrderView(individualOrder)
 
-        console.log("askjfdhsaljdfhsjadf",individualOrder)
+        console.log("individualOrder",individualOrder)
         individualOrder.orderDetails.length > 0 && individualOrder.orderDetails.map((order) => {
             const {indexNumber,categoryName,subCategoryName,product,productAmount,orderDetailId} = order;
 
@@ -41,7 +41,6 @@ const Orders = ({ orders,allDetails }) => {
         })
 
         setOrderDetails(orderDetails)
-        
         setShowOrder(false)
         setIndividualOrder(true)
     }
@@ -64,7 +63,7 @@ const Orders = ({ orders,allDetails }) => {
                     { id: "orderdate", label: "Order Date" },
                     { id: "cardnumber", label: "Card Number" },
                     { id: "customername", label: "Customer Name" }, 
-                    { id: "totalamount", label: "Total Amount" },            
+                    { id: "totalamount", label: "Total Amount ₹" },            
                     { id: "", label: "Action" }
                 ]}
                 rowdata={orders && orders.length > 0 ? orders : []}
@@ -78,10 +77,7 @@ const Orders = ({ orders,allDetails }) => {
                 modelopen={(e,id) => modelopen(e,id)}
                 // props_loading={this.state.props_loading}
                 specialProp={true}
-  
-        
             /> }
-
             {showIndividualOrder && 
                <TableComponent
                         heading={[
@@ -90,7 +86,7 @@ const Orders = ({ orders,allDetails }) => {
                         { id: "category", label: "Category" },
                         { id: "subcategory", label: "Sub Category" },
                         { id: "productname", label: "Product Name" }, 
-                        { id: "amount", label: "Total Amount" },            
+                        { id: "amount", label: "Amount ₹" },            
                     ]}
                     rowdata={orderDetails && orderDetails.length > 0 ? orderDetails : []}
                     actionclose="close"
@@ -102,9 +98,7 @@ const Orders = ({ orders,allDetails }) => {
                     Workflow="close"
                     modelopen={(e,id) => modelopen(e,id)}
                     // props_loading={this.state.props_loading}
-                    specialProp={true}
-
-            
+                    specialProp={true}   
                 />
             }
                 </div>

@@ -18,7 +18,7 @@ export const getInstructionLanguage = () => async dispatch => {
          const res = await axios.get(`${apiurl}getInstructionManualLanguageWeb`)
          dispatch({type:GET_INSTRUCTION_LANGUAGE,payload:res.data.data})
     } catch (err) {
-        
+      console.log("getInstructionLanguage",err)  
     }
 }
 
