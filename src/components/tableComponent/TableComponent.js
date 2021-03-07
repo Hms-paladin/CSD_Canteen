@@ -354,12 +354,10 @@ export default class Tablecomponent extends Component {
                               2}
                           </TableCell>
                         )}
-
                         {[row].map((data, index) => {
                           console.log(row, "tyu");
                           var keys = Object.keys(data);
                           // console.log(keys.length,"tabledata")
-
                           var arrval = [];
                           for (var m = 0; m < keys.length - 1; m++) {
                             arrval.push(

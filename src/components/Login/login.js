@@ -3,7 +3,7 @@ import './login.css'
 import palm from '../images/panamaram.jpeg'
 import TextField from '@material-ui/core/TextField';
 import IconButton from '@material-ui/core/IconButton';
-
+import {  Modal, ModalHeader, ModalBody } from 'reactstrap';
 import InputAdornment from '@material-ui/core/InputAdornment';
 
 import Eye from '../images/view.png'
@@ -12,7 +12,7 @@ import { Button } from '@material-ui/core';
 import { useDispatch ,connect} from "react-redux";
 import { login } from "../../actions/auth";
 
-import { withRouter } from "react-router-dom";
+import { withRouter,Link } from "react-router-dom";
 
 
 
@@ -21,7 +21,7 @@ const Login = ({ history,authMsg }) => {
 
   const dispatch = useDispatch();
 
-// console.log("login",user)
+
   const [loginData, setLoginData] = useState({
     email: "",
     password: ""
@@ -106,18 +106,38 @@ const Login = ({ history,authMsg }) => {
 
     if (email && password !== "") {
       dispatch(login({ email, password }, history));
-      if(!authMsg){
-        alert("Authentication Failed")
+      if(authMsg === false){
+        console.log(authMsg ,"Failed")
+        toggle();
+      } else{
+        console.log(authMsg,"Success")
       }
     }
 
   }
+// ____________________________________
+const [modal, setModal] = useState(false);
 
+const toggle = () => setModal(!modal);
+// ____________________________________
 
   return (
     <>
       <div className="login_container">
-
+{/* ___________________________________ */}
+<div>
+      <Modal isOpen={modal} toggle={toggle} centered={true} >
+        <ModalHeader toggle={toggle}>Authentication Failed</ModalHeader>
+        <ModalBody>
+        "The Email address that you have entered does not match any account"
+        </ModalBody>
+        {/* <ModalFooter>
+          <Button color="primary" onClick={toggle}>Do Something</Button>{' '}
+          <Button color="secondary" onClick={toggle}>Cancel</Button>
+        </ModalFooter> */}
+      </Modal>
+    </div>
+{/* ___________________________________ */}
         <div className="logincard">
 
           <div className="flex1">
@@ -164,7 +184,7 @@ const Login = ({ history,authMsg }) => {
               <Button onClick={() => handleSubmit()}>Login</Button>
             </div>
             <div className="frgtpass">
-              Forgot password?
+              <Link to="/forgotpassword">Forgot password?</Link>
                         </div>
 
             <div className="quicklinks">
@@ -177,7 +197,7 @@ const Login = ({ history,authMsg }) => {
 
         </div>
       </div>
-      {
+      {/* {
         showModal === true &&
       <div className="container demo">
 
@@ -202,7 +222,7 @@ const Login = ({ history,authMsg }) => {
 
 
       </div>
-      }
+      } */}
 
 
 

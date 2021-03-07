@@ -89,7 +89,7 @@ const Productedit = ({ productView,closemodal,subCategory=[] }) => {
                 <div>{productView && productView.indexNumber}</div>
                 <div className="heads">Category</div>
                 <div>{productView && productView.categoryName}</div>
-                <Button className="cancelbtn">Cancel</Button>
+                <Button className="cancelbtn" onClick={()=>closemodal() }>Cancel</Button>
 
             </div>
             <div className="productdetailright">

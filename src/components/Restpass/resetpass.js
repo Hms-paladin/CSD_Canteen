@@ -8,7 +8,7 @@ import InputAdornment from '@material-ui/core/InputAdornment';
 
 import Eye from '../images/view.png'
 import { Button } from '@material-ui/core';
-
+import { Link } from "react-router-dom";
 
 
 export default class Resetpass extends Component {
@@ -91,10 +91,12 @@ export default class Resetpass extends Component {
            }}/>
                         </div>
                         <div className="loginbtn">
-                        <Button onClick={() => this.props.changeAuth()}>Reset</Button>
+                        <Button 
+                        // onClick={() => this.props.changeAuth()}
+                        >Reset</Button>
                         </div>
                         <div className="frgtpass">
-                            Cancel
+                        <Link to="/">Cancel</Link>
                         </div>
 
                     </div>

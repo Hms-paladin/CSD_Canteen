@@ -18,11 +18,21 @@ export default function(state=initalState,action) {
         case LOGIN_SUCCESS:
             localStorage.setItem('token',payload.token)
             localStorage.setItem('user',JSON.stringify(payload.data))
-            return{
-                user:payload.data,
-                isAuthenticated:true,
-                loading:false
+            console.log("login___________________",payload.data)
+            if(payload.msg === "Authentication success" && payload.data !== null){
+                return{
+                    user:payload.data,
+                    isAuthenticated:true,
+                    loading:false
+                }
             }
+            // else{
+            //     return{
+            //         isAuthenticated:false,
+            //         loading:false
+            //     }
+            // }
+            
         case USER_LOADED:
             if(localStorage.user) {
                 let user = JSON.parse(localStorage.getItem("user"))

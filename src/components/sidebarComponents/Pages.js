@@ -112,8 +112,6 @@ const Pages = ({ pageDetails }) => {
                   <button className="footer-btn footer__cancel" onClick={cancelDetails}>Cancel</button>
                   <button className="footer-btn footer__save" onClick={updatePageDetails}>Save</button>
               </div>
-
-         
           </div>
 
             

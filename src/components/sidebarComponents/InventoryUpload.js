@@ -36,13 +36,13 @@ class Inventoryupload extends React.Component {
     render() {
         return(
             <div className="main-content">
-                <TableHeader title="Inventory Upload" />
+                <TableHeader title="Inventory File" />
 
 
                 <div className="main-content-details">
                     <div className="Inventory_cont">
                         <div className="Uploadcomp">
-                        <UploadComponent title="Inventoryupload" icon={palm} />
+                        <UploadComponent title="Inventory Upload" icon={palm} />
                         </div>
                         <div className="uploaddetail">
                            <span style={{color:"grey"}}> Last Upload On:</span> 12 Nov 2020

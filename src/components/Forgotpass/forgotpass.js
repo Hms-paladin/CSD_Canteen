@@ -8,7 +8,7 @@ import InputAdornment from '@material-ui/core/InputAdornment';
 
 import Eye from '../images/view.png'
 import { Button } from '@material-ui/core';
-
+import { Link } from "react-router-dom";
 
 
 export default class Forgotpass extends Component {
@@ -36,7 +36,6 @@ export default class Forgotpass extends Component {
                 this.setState({password:e.target.value},() => this.setState({ [key+"Error"]:false }))
               }
        
-           
          }
       
     render() {
@@ -81,10 +80,10 @@ export default class Forgotpass extends Component {
            }}/>
                         </div> */}
                         <div className="loginbtn">
-                        <Button >Send</Button>
+                       <Button >  <Link to= "/resetpassword">Send</Link></Button>
                         </div>
                         <div className="frgtpass">
-                            Back to login
+                            <Link to="/">Back to login</Link>
                         </div>
 
                     </div>

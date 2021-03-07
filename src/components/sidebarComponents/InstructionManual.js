@@ -24,10 +24,14 @@ const InstructionManual = ({ instructionData,instructionLanguage }) => {
         dispatch(getInstructionLanguage())
     },[])
 
-    const modelopen = (data,id) => {
-        const findData = instructionData.find(data => data.id === id)
-        setInstructionId(findData.instructionId)
+    const modelopen = (e,id) => {
+        const findData = instructionData.find((data) => data.id === id)
+        instructionData.map((item)=> console.log("________________________________________________________instruction item" , item))
+        // setInstructionId(findData.instructionId)
+        setInstructionId(id)
+        console.log("_______________________________________________instructionLanguage",findData.instructionLanguage)
         setInstructionLang(findData.instructionLanguage)
+        console.log("_______________________________________________instructionLanguage",findData.instructionLanguage)
         setInstructionFile(findData.instructionFileName)
         
     }
@@ -74,7 +78,7 @@ const InstructionManual = ({ instructionData,instructionLanguage }) => {
                     <div className="lang__label">
                       <label>Language</label>
                     </div>
-                <Select defaultValue={instructionLang !== "" && instructionLang} style={{width:"120%"}} onChange={(data) => handleLanguage(data)}>
+                <Select value={instructionLang !== "" ? instructionLang:""} style={{width:"120%"}} onChange={(data) => handleLanguage(data)}>
                          {instructionLanguage && instructionLanguage.length > 0 && getInstructionLanguages()}
                 </Select> 
             
@@ -105,7 +109,6 @@ const InstructionManual = ({ instructionData,instructionLanguage }) => {
                     EditIcon="open"
                     VisibilityIcon="close"
                     DeleteIcon="close"
-                    
                     UploadIcon="close"
                     GrandTotal="close"
                     Workflow="close"
