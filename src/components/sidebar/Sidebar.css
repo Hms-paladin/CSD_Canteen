@@ -3,16 +3,23 @@
     width: 15rem;
     box-shadow: .4rem 0 .4rem -2px lightgray
 }
-.sidebar ul li{
-    padding: 1rem 1rem;
-}
+
 
 ul {
     list-style-type: none;
     margin:0;
 }
 
-.sidebar ul li:visited{
+.link-bef{
+    padding: 1rem 1rem;
+    width: 100%;
+    list-style-type: none;
+    display:inline-block;
+}
+.active-link{
     background-color: lightgray;
+    display:inline-block;
+    width: 100%;
     border-left: 7px solid green;
+    list-style-type: none;
 }
