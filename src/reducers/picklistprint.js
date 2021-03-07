@@ -3,7 +3,7 @@ import {GET_PICKLIST_DATA} from "../actions/constants";
 import dateformat from "dateformat";
 
 const initalState = {
-    picklistdata:null
+    picklistdata:null,list_details:[]
 }
 
 export default function(state=initalState,action) {
@@ -20,7 +20,7 @@ export default function(state=initalState,action) {
                 id: data.orderId
             })
             })
-            return {...state,picklistdata}
+            return {...state,list_details:payload,picklistdata}
         default:
             return state;
     }
