@@ -22,7 +22,7 @@ const PaymentDetails = ({ paymentdata }) => {
      heading={[
         { id: "", label: "S.No" },
         { id: "orderid", label: "Order Id" },  { id: "date", label: "Order Date" },,
-        { id: "orderamount", label: "Order Amount" },
+        { id: "orderamount", label: "Order Amount (₹)" },
         { id: "name", label: "Name" },
         { id: "bankname", label: "Bank Name" }, 
         { id: "transactionid", label: "Transaction Id" },  

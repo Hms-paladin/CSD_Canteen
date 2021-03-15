@@ -63,7 +63,7 @@ const Orders = ({ orders,allDetails }) => {
                     { id: "orderdate", label: "Order Date" },
                     { id: "cardnumber", label: "Card Number" },
                     { id: "customername", label: "Customer Name" }, 
-                    { id: "totalamount", label: "Total Amount ₹" },            
+                    { id: "totalamount", label: "Total Amount (₹)" },            
                     { id: "", label: "Action" }
                 ]}
                 rowdata={orders && orders.length > 0 ? orders : []}
@@ -86,7 +86,7 @@ const Orders = ({ orders,allDetails }) => {
                         { id: "category", label: "Category" },
                         { id: "subcategory", label: "Sub Category" },
                         { id: "productname", label: "Product Name" }, 
-                        { id: "amount", label: "Amount ₹" },            
+                        { id: "amount", label: "Amount (₹)" },            
                     ]}
                     rowdata={orderDetails && orderDetails.length > 0 ? orderDetails : []}
                     actionclose="close"

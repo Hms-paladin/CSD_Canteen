@@ -27,7 +27,9 @@ export const getOrdersList = (data) => async dispatch => {
 
         const res = await axios.post(url,body,config)
 
-        dispatch({type:GET_ORDERS,payload:res.data.data[0].details})
+        dispatch({
+            type:GET_ORDERS,
+            payload:res.data.data[0].details})
         
     } catch (err) {
         
