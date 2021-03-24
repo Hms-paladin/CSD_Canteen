@@ -13,6 +13,10 @@ export const DELETE_CAREER = "DELETE_CAREER";
 
 
 export const NEW_ARRIVAL = "NEW_ARRIVAL";
+export const GET_CATEGORY = "GET_CATEGORY";
+export const GET_SUBCATEGORY = "GET_SUBCATEGORY";
+
+
 export const GET_PAGES_DETAILS = "GET_PAGES_DETAILS";
 
 export const GET_ORDERS = "GET_ORDERS";

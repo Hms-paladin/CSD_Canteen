@@ -71,7 +71,7 @@
 
 .rangePicker_Master .formdiv {
     width: 120% !important;
-    margin-top: 14px;
+    /* margin-top: 14px; */
     height: 51.5px;
 }
 

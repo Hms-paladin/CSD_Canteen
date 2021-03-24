@@ -206,7 +206,6 @@ const TablePaginationActionsWrapped = withStyles(actionsStyles, { withTheme: tru
 export default class Tablecomponent extends Component {
   constructor(props) {
     super(props);
- console.log(this.props.rowdata,"____________________________-rowdata")
     this.state = {
       order: "",
       open: false,
