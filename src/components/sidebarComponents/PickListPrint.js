@@ -147,7 +147,7 @@ const PickListPrint = ({ orders, allDetails }) => {
 
     return (
         <div className="main-content">
-            <TableHeader title={showList ? "Orders" : "Order view"} showDatePicker={showList ? true : false} showIndividualOrder={showIndividual} orderView={ListView} changeView={changeView} getrangeDate={(data) => { getrangeDate(data) }} />
+            <TableHeader title={showList ? "Pick List" : "Pick List view"} showDatePicker={showList ? true : false} showIndividualOrder={showIndividual} orderView={ListView} changeView={changeView} getrangeDate={(data) => { getrangeDate(data) }} />
 
             <div className="main-content-details">
                 {showList && <TableComponent

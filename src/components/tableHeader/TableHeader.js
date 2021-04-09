@@ -32,7 +32,7 @@ class TableHeader extends React.Component {
         var endDate = dateformat(data[0].endDate, "yyyy-mm-dd")
         this.setState({ startDate, endDate })
 
-        this.props.dispatch(getOrdersList({ startDate, endDate }))
+        // this.props.dispatch(getOrdersList({ startDate, endDate }))
         this.props.getrangeDate({ startDate, endDate })
 
     }
@@ -55,27 +55,23 @@ class TableHeader extends React.Component {
                         {this.props.showIndividualOrder &&
                             <div className="individualOrder-container">
                                 <div className="individualOrder__title">
-                                    <span className="individualOrder__span">OrderId</span>
-                                    <span> - </span>
-                                    <span className="individualOrder__span">{this.props.orderView && this.props.orderView.orderId}</span>
+                                    <span className="individualOrder__span">Order Id</span>
+                                    <div className="individualOrder__span orderDetailsValue">{this.props.orderView && this.props.orderView.orderId}</div>
                                 </div>
 
                                 <div className="individualOrder__title">
                                     <span className="individualOrder__span">Order date</span>
-                                    <span> - </span>
-                                    <span className="individualOrder__span">{dateformat(this.props.orderView && this.props.orderView.orderDate, "dd mmm yyyy")}</span>
+                                    <div className="individualOrder__span orderDetailsValue">{dateformat(this.props.orderView && this.props.orderView.orderDate, "dd mmm yyyy")}</div>
                                 </div>
 
                                 <div className="individualOrder__title">
-                                    <span className="individualOrder__span">cardnumber</span>
-                                    <span> - </span>
-                                    <span className="individualOrder__span">{this.props.orderView && this.props.orderView.cardNumber}</span>
+                                    <span className="individualOrder__span">card number</span>
+                                    <div className="individualOrder__span orderDetailsValue">{this.props.orderView && this.props.orderView.cardNumber}</div>
                                 </div>
 
                                 <div className="individualOrder__title">
-                                    <span className="individualOrder__span">customername</span>
-                                    <span> - </span>
-                                    <span className="individualOrder__span">{this.props.orderView && this.props.orderView.userName}</span>
+                                    <span className="individualOrder__span">customer name</span>
+                                    <div className="individualOrder__span orderDetailsValue">{this.props.orderView && this.props.orderView.userName}</div>
                                 </div>
                             </div>
                         }

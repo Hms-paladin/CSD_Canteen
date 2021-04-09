@@ -1,26 +1,43 @@
 /* eslint-disable import/no-anonymous-default-export */
-import {GET_PICKLIST_DATA} from "../actions/constants";
+import { GET_PICKLIST_DATA } from "../actions/constants";
 import dateformat from "dateformat";
 
 const initalState = {
-    picklistdata:null,list_details:[]
+    picklistdata: null, list_details: []
 }
 
-export default function(state=initalState,action) {
-    const {type,payload} = action;
+export default function (state = initalState, action) {
+    const { type, payload } = action;
 
-    switch(type) {
+    switch (type) {
         case GET_PICKLIST_DATA:
             let picklistdata = [];
-            payload && payload.length > 0 && payload.map((data) => {
-                const {orderDate} = data;
-                picklistdata.push({
-                orderDate:dateformat(orderDate,"dd/mm/yyyy"),
-                numberoforder:data.orderDetails.length,
-                id: data.orderId
+            let pickListDate = []
+            payload.length > 0 && payload.map((data) => {
+                const { orderDate } = data;
+                console.log(pickListDate.includes(dateformat(orderDate, "dd/mm/yyyy")),"adddate")
+                if (!pickListDate.includes(dateformat(orderDate, "dd/mm/yyyy"))) {
+                    picklistdata.push({
+                        orderDate: dateformat(orderDate, "dd/mm/yyyy"),
+                        numberoforder: data.orderDetails.length,
+                        id: data.orderId
+                    })
+                    pickListDate.push(dateformat(orderDate, "dd/mm/yyyy"))
+                }
+                else{
+                    
+                    let getIndex = []
+
+                    pickListDate.filter((da,index)=>{
+                        console.log(dateformat(orderDate, "dd/mm/yyyy"),(da),"hai")
+                        if(dateformat(orderDate, "dd/mm/yyyy") === da){
+                            getIndex.push(index)
+                        }
+                    })
+                    picklistdata[getIndex[0]].numberoforder = picklistdata[getIndex[0]].numberoforder + data.orderDetails.length
+                }
             })
-            })
-            return {...state,list_details:payload,picklistdata}
+            return { ...state, list_details: payload, picklistdata }
         default:
             return state;
     }

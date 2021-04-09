@@ -19,12 +19,12 @@ const Header = () => {
     return(
         <div className="canteen_header">
             <div className="canteen_header-title">
-                CSD Canteens Chennai
+                CSD Canteen Chennai
             </div>
             {/* <div>
                 <input type="text" placeholder="Search" className="canteen_header-search" />
             </div> */}
-            <div onClick={logout}>
+            <div style={{cursor:"pointer"}} onClick={logout}>
                 Logout
             </div>
             

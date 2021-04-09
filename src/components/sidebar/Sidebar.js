@@ -4,17 +4,12 @@ import "./Sidebar.css";
 
 
 const Sidebar = () => {
-
-    const history = useHistory();
-    if(window.location.pathname === "/"){
-    history.push("/dashboard")
-    }
     return(
         <div className="sidebar"> 
             <ul>
                <li> <NavLink  className="link-bef" activeClassName="active-link" to="/dashboard">Dashboard</NavLink></li>
                <li><NavLink className="link-bef" activeClassName="active-link" to="/orders">Orders</NavLink></li>
-               <li><NavLink className="link-bef" activeClassName="active-link" to="/picklist">Pick List Print</NavLink></li>
+               <li><NavLink className="link-bef" activeClassName="active-link" to="/picklist">Pick List</NavLink></li>
                <li><NavLink className="link-bef" activeClassName="active-link" to="/payment">Payment Details</NavLink></li>
                <li><NavLink className="link-bef" activeClassName="active-link"  to="/inventory">Inventory Upload</NavLink></li>
                <li><NavLink className="link-bef" activeClassName="active-link" to="/productmanagement">Product</NavLink></li>

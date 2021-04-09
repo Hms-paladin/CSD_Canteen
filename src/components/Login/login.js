@@ -3,20 +3,20 @@ import './login.css'
 import palm from '../images/panamaram.jpeg'
 import TextField from '@material-ui/core/TextField';
 import IconButton from '@material-ui/core/IconButton';
-import {  Modal, ModalHeader, ModalBody } from 'reactstrap';
+import { Modal, ModalHeader, ModalBody } from 'reactstrap';
 import InputAdornment from '@material-ui/core/InputAdornment';
 
 import Eye from '../images/view.png'
 import { Button } from '@material-ui/core';
 
-import { useDispatch ,connect} from "react-redux";
+import { useDispatch, connect } from "react-redux";
 import { login } from "../../actions/auth";
 
-import { withRouter,Link } from "react-router-dom";
+import { withRouter, Link } from "react-router-dom";
 
 
 
-const Login = ({ history,authMsg }) => {
+const Login = ({ history, authMsg }) => {
 
 
   const dispatch = useDispatch();
@@ -27,7 +27,7 @@ const Login = ({ history,authMsg }) => {
     password: ""
   })
 
-  const [ showModal, setShowModal] = useState(false);
+  const [showModal, setShowModal] = useState(false);
 
   const [invalidEmail, setInvalidEmail] = useState(true)
 
@@ -41,11 +41,11 @@ const Login = ({ history,authMsg }) => {
   const { emailError, passwordError } = error;
 
   const [hidden, setHidden] = useState(true)
-  
+
   useEffect(() => {
 
-  },[showModal]);
-  
+  }, [showModal]);
+
 
 
   const toggleshow = () => {
@@ -106,38 +106,30 @@ const Login = ({ history,authMsg }) => {
 
     if (email && password !== "") {
       dispatch(login({ email, password }, history));
-      if(authMsg === false){
-        console.log(authMsg ,"Failed")
-        toggle();
-      } else{
-        console.log(authMsg,"Success")
-      }
+      // if (authMsg === false) {
+      //   console.log(authMsg, "Failed")
+      //   toggle();
+      // } else {
+      //   console.log(authMsg, "Success")
+      // }
     }
 
   }
-// ____________________________________
-const [modal, setModal] = useState(false);
+  // const [modal, setModal] = useState(false);
 
-const toggle = () => setModal(!modal);
-// ____________________________________
-
+  // const toggle = () => setModal(!modal);
   return (
-    <>
+    <div className="loginImgContainer">
       <div className="login_container">
-{/* ___________________________________ */}
-<div>
-      <Modal isOpen={modal} toggle={toggle} centered={true} >
-        <ModalHeader toggle={toggle}>Authentication Failed</ModalHeader>
-        <ModalBody>
-        "The Email address that you have entered does not match any account"
+        <div>
+          {/* <Modal isOpen={modal} toggle={toggle} centered={true} >
+            <ModalHeader toggle={toggle}>Authentication Failed</ModalHeader>
+            <ModalBody>
+              "The Email address that you have entered does not match any account"
         </ModalBody>
-        {/* <ModalFooter>
-          <Button color="primary" onClick={toggle}>Do Something</Button>{' '}
-          <Button color="secondary" onClick={toggle}>Cancel</Button>
-        </ModalFooter> */}
-      </Modal>
-    </div>
-{/* ___________________________________ */}
+
+          </Modal> */}
+        </div>
         <div className="logincard">
 
           <div className="flex1">
@@ -165,7 +157,7 @@ const toggle = () => setModal(!modal);
             <div className="error">{!invalidEmail && <span>Invalid email</span>}</div>
 
             <div className="email_container">
-              <TextField type={hidden ? "password" : "text"} value={password} placeholder="" className="trrainer_password" name="password" label="PASSWORD" required="true"
+              <TextField type={hidden ? "password" : "text"} value={password} placeholder="" className="trrainer_password" name="password" label="Password"
                 autoComplete="off" onChange={(e) => handleChange(e, "password")}
                 onKeyDown={(e) => pressEnter(e)}
                 InputProps={{
@@ -185,18 +177,15 @@ const toggle = () => setModal(!modal);
             </div>
             <div className="frgtpass">
               <Link to="/forgotpassword">Forgot password?</Link>
-                        </div>
-
-            <div className="quicklinks">
-              <button><a href="/?/terms" target="_blank">Terms & Conditions</a></button>
-              <button><a href="/?/privacy" target="_blank">Privacy Policy</a></button>
-              <button><a href="/?/cancelrefund" target="_blank">Cancellation and Refund</a></button>
             </div>
-
           </div>
-
         </div>
       </div>
+      <div className="quicklinks">
+          <button><a href="/?/terms" target="_blank">Terms & Conditions</a></button>
+          <button><a href="/?/privacy" target="_blank">Privacy Policy</a></button>
+          <button><a href="/?/cancelrefund" target="_blank">Cancellation and Refund</a></button>
+        </div>
       {/* {
         showModal === true &&
       <div className="container demo">
@@ -226,14 +215,14 @@ const toggle = () => setModal(!modal);
 
 
 
-    </>
+    </div>
   )
 }
 
 
 
 const mapStateToProps = state => ({
-  authMsg:state.auth.isAuthenticated
+  authMsg: state.auth.isAuthenticated
   // ...state.auth
 })
 

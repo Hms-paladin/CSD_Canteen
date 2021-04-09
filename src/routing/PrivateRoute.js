@@ -1,36 +1,36 @@
-import React,{useEffect,useState} from "react";
-import {Route,Redirect} from "react-router-dom";
-import {useSelector,connect,useDispatch} from "react-redux";
-import {loadUser} from "../actions/auth";
+import React, { useEffect, useState } from "react";
+import { Route, Redirect } from "react-router-dom";
+import { useSelector, connect, useDispatch } from "react-redux";
+import { loadUser } from "../actions/auth";
 
 
-const PrivateRoute = ({ component:Component,isAuthenticated,...rest}) => {
+const PrivateRoute = ({ component: Component, isAuthenticated, ...rest }) => {
 
     const dispatch = useDispatch();
 
     useEffect(() => {
         dispatch(loadUser())
-      },[dispatch])
+    }, [dispatch])
 
 
-    return(
-        
-        <Route 
-        {...rest}
-        render={(props) => isAuthenticated !== null && !isAuthenticated ? 
-        ( <Redirect to="/" />)
-        :
-        (
-            <Component {...props} />  
-        )
-       }
-       />           
+    return (
+
+        <Route
+            {...rest}
+            render={(props) => isAuthenticated !== null && !isAuthenticated ?
+                (<Redirect to="/" />)
+                :
+                (
+                    <Component {...props} />
+                )
+            }
+        />
     )
-    
+
 }
 
 const mapStateToProps = state => ({
-    isAuthenticated:state.auth.isAuthenticated
+    isAuthenticated: state.auth.isAuthenticated
 })
 
-export default connect(mapStateToProps)(PrivateRoute); 
+export default connect(mapStateToProps)(PrivateRoute);

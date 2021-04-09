@@ -34,7 +34,34 @@ const axios = require('axios');
 
 
 
-function desc(a, b, orderBy) {
+// function desc(a, b, orderBy) {
+//   if (b[orderBy] < a[orderBy]) {
+//     return -1;
+//   }
+//   if (b[orderBy] > a[orderBy]) {
+//     return 1;
+//   }
+//   return 0;
+// }
+
+// function stableSort(array, cmp) {
+//   console.log("sort", array);
+//   const stabilizedThis = array.map((el, index) => [el, index]);
+//   stabilizedThis.sort((a, b) => {
+//     const order = cmp(a[0], b[0]);
+//     if (order !== 0) return order;
+//     return a[1] - b[1];
+//   });
+//   return stabilizedThis.map(el => el[0]);
+// }
+
+// function getSorting(order, orderBy) {
+//   return order === "desc"
+//     ? (a, b) => desc(a, b, orderBy)
+//     : (a, b) => -desc(a, b, orderBy);
+// }
+
+function descendingComparator(a, b, orderBy) {
   if (b[orderBy] < a[orderBy]) {
     return -1;
   }
@@ -44,21 +71,20 @@ function desc(a, b, orderBy) {
   return 0;
 }
 
-function stableSort(array, cmp) {
-  console.log("sort", array);
+function getSorting(order, orderBy) {
+  return order === 'desc'
+    ? (a, b) => descendingComparator(a, b, orderBy)
+    : (a, b) => -descendingComparator(a, b, orderBy);
+}
+
+function stableSort(array, comparator) {
   const stabilizedThis = array.map((el, index) => [el, index]);
   stabilizedThis.sort((a, b) => {
-    const order = cmp(a[0], b[0]);
+    const order = comparator(a[0], b[0]);
     if (order !== 0) return order;
     return a[1] - b[1];
   });
-  return stabilizedThis.map(el => el[0]);
-}
-
-function getSorting(order, orderBy) {
-  return order === "desc"
-    ? (a, b) => desc(a, b, orderBy)
-    : (a, b) => -desc(a, b, orderBy);
+  return stabilizedThis.map((el) => el[0]);
 }
 
 
@@ -99,13 +125,25 @@ function EnhancedTableHead(props) {
             padding={row.disablePadding ? "none" : "default"}
             sortDirection={orderBy === row.id ? order : false}
           >
-            <TableSortLabel
+            {/* <TableSortLabel
               active={orderBy === row.id}
               hideSortIcon={row.id==""?true:false}
               direction={order}
               onClick={row.id==""?false: createSortHandler(row.id)}
             >
               {row.label}
+            </TableSortLabel> */}
+            <TableSortLabel
+              active={orderBy === row.id}
+              direction={orderBy === row.id ? order : 'asc'}
+              onClick={createSortHandler(row.id)}
+            >
+              {row.label}
+              {/* {orderBy === row.id ? (
+                <span>
+                  {order === 'desc' ? 'sorted descending' : 'sorted ascending'}
+                </span>
+              ) : null} */}
             </TableSortLabel>
           </TableCell>
         ))}
@@ -225,11 +263,18 @@ export default class Tablecomponent extends Component {
 
 
   handleRequestSort = (event, property) => {
+    console.log(property,"orderProperty")
     const isDesc =
       this.state.orderBy === property && this.state.order === "desc";
     this.setState({ order: isDesc ? "asc" : "desc" });
     this.setState({ orderBy: property });
   };
+
+  // const handleRequestSort = (event, property) => {
+  //   const isAsc = orderBy === property && order === 'asc';
+  //   setOrder(isAsc ? 'desc' : 'asc');
+  //   setOrderBy(property);
+  // };
 
   closemodal = () => {
     this.setState({ view: false, DeleteView: false });
@@ -339,6 +384,7 @@ export default class Tablecomponent extends Component {
                         role="checkbox"
                         tabIndex={-1}
                         key={index}
+                        className={this.props.tableRowCss}
                       >
                         {!this.props.blockSno && (
                           <TableCell
@@ -360,7 +406,7 @@ export default class Tablecomponent extends Component {
                           var arrval = [];
                           for (var m = 0; m < keys.length - 1; m++) {
                             arrval.push(
-                              <TableCell key={data.id + "" + m}>
+                              <TableCell key={data.id + "" + m} align="">
                                 {data[keys[m]]}
                               </TableCell>
                             );

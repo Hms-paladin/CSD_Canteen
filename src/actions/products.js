@@ -1,6 +1,8 @@
 import {GET_PRODUCTS} from "./constants";
 import apiurl from "../utils/baseUrl";
 import axios from "axios";
+import {notification} from "antd";
+
 
 export const getProductDetails = () => async dispatch => {
     try {
@@ -37,7 +39,12 @@ export const editProduct = (productId,imageArray,productSub) => async dispatch =
             headers: { 'content-type': 'multipart/form-data' }
         }
         console.log("sadfljhasdjfhasdjf",formData)
-        await axios.put(url,formData,config)
+        const res = await axios.put(url,formData,config)
+        if(res.data.status == 0){
+            notification.success({
+                message: 'Product Edited Successfully',
+              });
+        }
         dispatch(getProductDetails())
     } catch (err) {
         

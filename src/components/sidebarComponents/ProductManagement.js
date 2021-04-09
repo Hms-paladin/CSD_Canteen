@@ -86,10 +86,10 @@ const ProductManagement = ({ products,allproducts }) => {
         <TableComponent
          heading={[
             { id: "", label: "S.No" },
-            { id: "productid", label: "Product Id" },
-            { id: "category", label: "Category" },
-            { id: "subcategory", label: "SubCategory" },
-            { id: "productname", label: "Product Name" },             
+            { id: "indexNumber", label: "Product Id" },
+            { id: "categoryName", label: "Category" },
+            { id: "subCategoryName", label: "SubCategory" },
+            { id: "productName", label: "Product Name" },             
             { id: "", label: "Action" }
         ]}
    

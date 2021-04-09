@@ -1,24 +1,43 @@
 import React from "react";
 import TableHeader from "../tableHeader/TableHeader"
 import TableComponent from "../tableComponent/TableComponent";
-import { Input } from 'antd';
+import { Input, Button } from 'antd';
 import Labelbox from "../helpers/labelbox/labelbox";
 import ViewImageModal from "../helpers/ViewImageModal/ViewImageModal";
 import { connect } from "react-redux";
 import { getNewArrivals, getCategory, getSubCategory } from "../../actions/newarrival"
+import CancelIcon from '@material-ui/icons/Cancel';
+import axios from "axios";
+import apiurl from "../../utils/baseUrl";
+import DeleteIcon from "@material-ui/icons/Delete";
+import AddIcon from '@material-ui/icons/Add';
+
+import '../../App.css';
 
 const { Search } = Input;
 
-
-
 class Newarrival extends React.Component {
+
+    state = {
+        viewModal: false,
+        clickedId: 0,
+        categoryDrop: [],
+        subCategoryDrop: [],
+        searchValue: "",
+        categoryValue: "",
+        subCategoryValue: "",
+        categoryValueByName: "",
+        subCategoryValueByName: "",
+        newarrival: [],
+        searchdata: []
+    }
 
     //  Backdrop
     componentWillMount() {
         document.addEventListener('mousedown', this.handleClick, false)
         this.props.dispatch(getNewArrivals())
-        this.props.dispatch(getCategory())
-        this.props.dispatch(getSubCategory())
+        // this.props.dispatch(getCategory())
+        // this.props.dispatch(getSubCategory())
     }
 
     componentWillUnmount() {
@@ -33,48 +52,136 @@ class Newarrival extends React.Component {
         this.setState({ viewModal: false })
     }
 
+    componentDidMount() {
+        let newarrival = [];
 
+        this.props.newarrival.map((data) => {
+            const { indexNumber, productName, productId } = data;
+            newarrival.push({
+                indexNumber,
+                productName,
+                action: <DeleteIcon className="arrivalDelete_icon" />,
+                id: productId
+            })
+        })
 
-    state = {
-        viewModal: false,
-        clickedId: 0,
-        newarrivalData: [
-            {
-                indexnumber: "Hindi",
-                category: "myfile.pdf",
-                subcategory: "17 Nov 2020",
-                productname: "Hindi",
-                id: 1
-            },
-            {
-                indexnumber: "Tamil",
-                category: "file.pdf",
-                subcategory: "12 Nov 2020",
-                productname: "Hindi",
+        this.setState({ newarrival: newarrival, searchdata: newarrival })
 
-                id: 2
-            },
-            {
-                indexnumber: "English",
-                category: "mydoc.pdf",
-                subcategory: "12 Nov 2020",
-                productname: "Hindi",
-
-                id: 3
-            }
-        ]
     }
 
+    UNSAFE_componentWillReceiveProps() {
+        const optCategory = []
+        const optSubCategory = []
+
+        this.props.subCategory.map((data) => {
+            optCategory.push({ value: data.category, id: data.categoryId })
+        })
+
+        this.setState({ categoryDrop: optCategory })
+
+        //    ?.subCategorylist.map((data)=>{return{id:data.subCategoryId,value:data.subCategory}})
+    }
 
     modelopen = (e, id) => {
         this.setState({ viewModal: true, clickedId: id })
     }
 
+    handleChangeCate = (data) => {
+        this.setState({ categoryValue: data })
+
+        this.props.subCategory.find((list) => {
+            if (list.categoryId === data) {
+                const subCategoryOption = []
+                list.subCategoryList.map((item) => {
+                    subCategoryOption.push({ id: item.subCategoryId, value: item.subCategory })
+                })
+                this.setState({ subCategoryDrop: subCategoryOption, subCategoryValue: "", categoryValueByName: list.category })
+            }
+        })
+    }
+
+    handleChangeSubCate = (data) => {
+        this.state.subCategoryDrop.find((item) => {
+            if (item.id === data) {
+                this.setState({ subCategoryValueByName: item.value })
+            }
+        })
+        this.setState({ subCategoryValue: data })
+    }
+
+    clearFilter = () => {
+        this.setState({
+            searchValue: "",
+            categoryValue: "",
+            subCategoryValue: "",
+            categoryValueByName: "",
+            subCategoryValueByName: "",
+            subCategoryDrop: []
+        })
+    }
+
+    addArrival = (id) => {
+            axios.post(apiurl + 'addNewArraivalListWeb', {
+                "productId": id,
+                "adminUserId": 1
+            })
+            .then(() => {
+                this.handleSearch()
+            })
+    }
+
+    deleteArrival = (id) => {
+        axios.post(apiurl + 'deleteNewArraivalListWeb', {
+            "productId": id,
+            "newArrivalId":id
+        })
+        .then(() => {
+            this.handleSearch()
+        })
+}
+
+    handleSearch = () => {
+
+        // console.log(JSON.parse(localStorage.getItem('user')).adminId,"getItem")
+
+        const self = this
+
+        axios.post(apiurl + 'commonProductSearch', {
+            "searchContent": this.state.searchValue,
+            "userId": 2,
+            "limit": 10000000,
+            "pageno": 1
+        })
+            .then(function (response) {
+                const searchdata = []
+                if (response.data.status === 1) {
+                    response.data.data[0].details.filter((data, index) => {
+                        searchdata.push({
+                            indexNumber: data.indexNumber,
+                            productName: data.productName,
+                            action: <AddIcon className="arrivalAdd_icon" onClick={() => self.addArrival(data.productId)} />,
+                            id: data.productId
+
+                        })
+                    })
+                    self.setState({ searchdata: searchdata })
+                } else if (self.state.searchValue === "") {
+                    self.setState({ searchdata: self.state.newarrival })
+                }
+                else {
+                    self.setState({ searchdata: [] })
+                }
+
+            })
+            .catch(function (error) {
+                console.log(error);
+            });
+    }
+
+
     render() {
-        const { newarrival } = this.props;
-       const categoryDrop =  this.props.category.map((data)=>{return{id:data.categoryId,value:data.category}})
-    //    const subCategoryDrop =  this.props.subCategory?.subCategorylist.map((data)=>{return{id:data.subCategoryId,value:data.subCategory}})
-       return (
+        console.log(this.state.searchdata, "tablerowarrival")
+        return (
             <div className="main-content" ref="node">
 
                 <TableHeader title="New Arrival" />
@@ -82,41 +189,45 @@ class Newarrival extends React.Component {
                 <div className="main-content-details">
                     <div className="newarrival_table">
 
-                        <Search placeholder="Search" enterButton />
-                        <div className="drpdwn_flex">
+                        <Input placeholder="Search" enterButton onChange={(e) => this.setState({ searchValue: e.target.value })} value={this.state.searchValue} />
+                        <Button type="primary" onClick={this.handleSearch}>Search</Button>
+                        {/* <div className="drpdwn_flex">
                             <div>
-                                <Labelbox type="select" labelname="Category" dropdown={categoryDrop} />
+                                <Labelbox type="select" labelname="Category" dropdown={this.state.categoryDrop} changeData={(data)=>this.handleChangeCate(data)} value={this.state.categoryValue} />
                             </div>
                             <div>
-                                <Labelbox type="select" labelname="Sub category" />
+                                <Labelbox type="select" labelname="Sub category" value={this.state.subCategoryValue} dropdown={this.state.subCategoryDrop} changeData={(data)=>this.handleChangeSubCate(data)} />
                             </div>
-
-                        </div>
+                            <div className="cancelFilterIcon">
+                            <CancelIcon onClick={this.clearFilter} />
+                            </div>
+                        </div> */}
                     </div>
 
 
                     <TableComponent
                         heading={[
                             { id: "", label: "S.No" },
-                            { id: "indexnumber", label: "Index Number" },
-                            { id: "category", label: "Category" },
-                            { id: "subcategory ", label: "Subcategory" },
-                            { id: "productname ", label: "Product Name" },
+                            { id: "indexNumber", label: "Index Number" },
+                            // { id: "categoryName", label: "Category" },
+                            // { id: "subCategoryName ", label: "Subcategory" },
+                            { id: "productName ", label: "Product Name" },
+                            { id: "", label: "Action" },
 
-                            { id: "", label: "Image" },
-                            { id: "newarrival ", label: "New Arrival" },
+                            // { id: "", label: "Image" },
+                            // { id: "newarrival ", label: "New Arrival" },
 
                         ]}
-                        rowdata={newarrival && newarrival.length > 0 ? newarrival : []}
+                        rowdata={this.state.searchdata}
                         // actionclose="close"
                         EditIcon="close"
-                        // VisibilityIcon="close"
+                        VisibilityIcon="close"
                         DeleteIcon="close"
                         UploadIcon="close"
                         GrandTotal="close"
                         Workflow="close"
                         pdfDownload="close"
-                        checkbox="open"
+                        checkbox="close"
                         modelopen={(e, id) => this.modelopen(e, id)}
                         // props_loading={this.state.props_loading}
                         specialProp={true}
@@ -138,3 +249,28 @@ const mapStateToProps = state => ({
 
 
 export default connect(mapStateToProps)(Newarrival);
+
+
+
+// const { newarrival } = this.state;
+// console.log(this.state.newarrival,!this.state.searchValue, "searchValue")
+// || !this.state.categoryValue || !this.state.subCategoryValue
+// const searchdata = []
+// newarrival.filter((data, index) => {
+//     if (!this.state.searchValue
+//         && !this.state.categoryValueByName && !this.state.subCategoryValueByName
+//     ) {
+
+//         searchdata.push(data)
+//     }
+//     else if (data.indexNumber && data.indexNumber.toLowerCase().includes(this.state.searchValue.toLowerCase())
+//           || data.categoryName && data.categoryName.toLowerCase().includes(this.state.searchValue.toLowerCase()) 
+//           || data.subCategoryName && data.subCategoryName.toLowerCase().includes(this.state.searchValue.toLowerCase()) 
+//         || data.productName && data.productName.toLowerCase().includes(this.state.searchValue.toLocaleLowerCase())
+//     ) {
+//         if(data.categoryName.toLowerCase().includes(this.state.categoryValueByName.toLowerCase()) && data.subCategoryName.toLowerCase().includes(this.state.subCategoryValueByName.toLowerCase())){
+//         searchdata.push(data)
+//         }
+//     }
+// })
+// this.setState({searchdata})

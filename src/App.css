@@ -1,63 +1,53 @@
 .content-flex {
-  display:flex;
+  display: flex;
 }
 
 .main-content {
-  flex:1;
+  flex: 1;
 }
 
 .main-content-details {
-    margin: 1.5rem;
-    background-color: white;
-    min-height: 40rem;
+  margin: 1.5rem;
+  background-color: white;
+  min-height: 40rem;
 }
 
 .card-details {
   display: flex;
- flex-wrap: wrap;
+  flex-wrap: wrap;
   justify-content: space-between;
   width: 83%;
 }
-.newarrival_table{
+.newarrival_table {
   padding: 30px;
+  display: flex;
+  width: 50%;
 }
-.newarrival_table .ant-input
-{
+.newarrival_table .ant-input {
   border-radius: 50px !important;
-  padding: 10px 55px 10px 14px;
-}
-.newarrival_table .ant-btn
-{
-  height:43.5px !important
-
-}
-.newarrival_table .ant-input-search-button{
-  border-top-right-radius: 50px !important;
-  border-bottom-right-radius: 50px !important;
-
-}
-.newarrival_table .ant-checkbox-inner{
-border:1.5px solid #a6a2a2 !important
-}
-.newarrival_table .ant-btn-primary{
-  background-color: #a6a2a2 !important;
-  border: #a6a2a2 !important;
-}
-.newarrival_table .ant-input-group-wrapper {
-  
-  width: 50% !important;
- 
-}
-.newarrival_table .ant-input-search > .ant-input-group > .ant-input-group-addon{
-  left: -44px !important;
+  /* padding: 10px 55px 10px 14px; */
+  margin-right: 20px;
 }
 
-.drpdwn_flex{
+.arrivalDelete_icon{
+  color: #ee534f;
+  font-size: 20px !important;
+  cursor: pointer;
+  margin-left: 17px;
+}
+
+.arrivalAdd_icon{
+  color: green;
+  font-size: 20px !important;
+  cursor: pointer;
+  margin-left: 17px;
+}
+
+.drpdwn_flex {
   display: flex;
   margin: 20px 0px;
-
 }
-.drpdwn_flex >div{
+.drpdwn_flex > div {
   width: 30%;
   margin-right: 30px;
 }
@@ -66,11 +56,10 @@ border:1.5px solid #a6a2a2 !important
   padding-top: 2rem;
 }
 
-
 .orders-list {
-    display: flex;
-    padding: 2rem;
-    align-items: center;
+  display: flex;
+  padding: 2rem;
+  align-items: center;
 }
 
 .orders-list-title {
@@ -78,11 +67,10 @@ border:1.5px solid #a6a2a2 !important
 }
 
 .orders-count {
-   
-    color: white;
-    padding: 2.3rem;
-    border-radius: 50%;
-    margin-right: 2rem;
+  color: white;
+  padding: 2.3rem;
+  border-radius: 50%;
+  margin-right: 2rem;
 }
 
 .count-1 {
@@ -90,11 +78,12 @@ border:1.5px solid #a6a2a2 !important
 }
 
 .count-2 {
-  background-color:orange;
+  background-color: orange;
 }
 
-.VendorDetailsDiv tbody th, .VendorDetailsDiv tbody td {
-   font-size: 1rem;
+.VendorDetailsDiv tbody th,
+.VendorDetailsDiv tbody td {
+  font-size: 1rem;
 }
 
 .MuiTablePagination-caption {
@@ -108,50 +97,46 @@ border:1.5px solid #a6a2a2 !important
   font-size: 16px;
   font-weight: 500;
 }
-.Instructionmanual_cont .langdrop{
-width: 28%;
-margin-bottom:40px;
-margin-left:30px
+.Instructionmanual_cont .langdrop {
+  width: 28%;
+  margin-bottom: 40px;
+  margin-left: 30px;
 }
-.Uploadcomp{
+.Uploadcomp {
   margin: 30px 10px;
   margin-bottom: 40px !important;
 }
-.Inventory_cont{
+.Inventory_cont {
   display: flex;
   justify-content: space-between;
 }
-.Inventory_cont div{
+.Inventory_cont div {
   width: 100%;
   margin-bottom: 30px;
 }
-.Inventory_cont .uploaddetail{
-
-display: flex;
+.Inventory_cont .uploaddetail {
+  display: flex;
   font-weight: 500;
   justify-content: flex-end;
   align-items: center;
-
 }
-.btn_flex{
+.btn_flex {
   display: flex;
   justify-content: flex-end;
 }
-.btn_flex Button{
+.btn_flex Button {
   margin: 20px 10px;
   padding: 7px 25px;
   border-radius: 50px;
 }
-.btn_flex .cancel{
+.btn_flex .cancel {
   background-color: #a6a2a2;
   color: black;
 }
-.btn_flex .submit{
+.btn_flex .submit {
   color: white;
-  background-color: #5377EE;
+  background-color: #5377ee;
 }
-
-
 
 .footer__buttons {
   padding: 30px 0 0 0;
@@ -160,10 +145,9 @@ display: flex;
 }
 
 .footer__cancel {
-  margin-right: 2rem; 
+  margin-right: 2rem;
   color: black;
 }
-
 
 .footer__save {
   background-color: #5377ee;
@@ -173,7 +157,7 @@ display: flex;
 .footer-btn {
   padding: 10px 40px;
   border: none;
-  outline:none;
+  outline: none;
   border-radius: 50px;
   font-weight: 500;
   cursor: pointer;
@@ -188,4 +172,25 @@ display: flex;
 .upload__error {
   color: red;
   margin-left: 1.7rem;
+}
+
+.cancelFilterIcon {
+  display: flex;
+  align-items: flex-end;
+}
+
+.cancelFilterIcon svg{
+  cursor: pointer;
+}
+
+/* orderPage css */
+
+.orderIndiTableRowCss td:nth-child(5),.orderIndiTableRowCss td:nth-child(6){
+  text-align: right;
+  padding-right: 5%;
+}
+
+.orderTableRowCss td:nth-child(6){
+  text-align: right;
+  padding-right: 5%;
 }

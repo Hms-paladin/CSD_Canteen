@@ -1,6 +1,6 @@
 .table_header {
     background-color: #DCDCDC;
-    padding: .4rem 2rem;
+    padding: 0.2rem 2rem;
 }
 
 .table_header-title {
@@ -90,10 +90,11 @@
 
 .individualOrder__title {
     margin-left: 4rem;
+    white-space: nowrap;
 }
 
 .individualOrder__span {
-    font-size: .8rem;
+    font-size: 14px;
 }
 
 .orderview__arr {
@@ -101,4 +102,8 @@
     padding: .1rem 1rem;
     margin-right: 3rem;
     cursor: pointer;
+}
+
+.orderDetailsValue{
+    color: gray;
 }

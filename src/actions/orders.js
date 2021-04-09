@@ -7,8 +7,6 @@ import dateformat from "dateformat";
 export const getOrdersList = (data) => async dispatch => {
     try {
 
-        const { startDate, endDate } = data;
-
         const url = `${apiurl}getOrderListWeb`;
 
         const config = {
@@ -19,8 +17,8 @@ export const getOrdersList = (data) => async dispatch => {
 
         const body = {
             "dateRange": true,
-            "fromDate": dateformat(startDate, "yyyy-mm-dd"),
-            "toDate": dateformat(endDate, "yyyy-mm-dd"),
+            "fromDate": data ? dateformat(data.startDate, "yyyy-mm-dd") : dateformat(new Date(), "yyyy-mm-dd"),
+            "toDate": data ? dateformat(data.endDate, "yyyy-mm-dd") : dateformat(new Date(), "yyyy-mm-dd"),
             "limit": 100,
             "pageno": 1
         }
