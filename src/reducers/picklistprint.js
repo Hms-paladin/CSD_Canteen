@@ -19,7 +19,8 @@ export default function (state = initalState, action) {
                 if (!pickListDate.includes(dateformat(orderDate, "dd/mm/yyyy"))) {
                     picklistdata.push({
                         orderDate: dateformat(orderDate, "dd/mm/yyyy"),
-                        numberoforder: data.orderDetails.length,
+                        numberoforder: 1,
+                        // data.orderDetails.length
                         id: data.orderId
                     })
                     pickListDate.push(dateformat(orderDate, "dd/mm/yyyy"))
@@ -34,7 +35,7 @@ export default function (state = initalState, action) {
                             getIndex.push(index)
                         }
                     })
-                    picklistdata[getIndex[0]].numberoforder = picklistdata[getIndex[0]].numberoforder + data.orderDetails.length
+                    picklistdata[getIndex[0]].numberoforder = picklistdata[getIndex[0]].numberoforder + 1
                 }
             })
             return { ...state, list_details: payload, picklistdata }

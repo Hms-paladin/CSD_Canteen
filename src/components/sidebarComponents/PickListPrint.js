@@ -8,6 +8,7 @@ import Checkbox from '@material-ui/core/Checkbox';
 import ReactToPrint from "react-to-print";
 import ComponentToPrint from "./ComponentToPrint";
 import Button from '@material-ui/core/Button';
+import moment from 'moment';
 import "./ComponentToprint.css";
 
 
@@ -27,6 +28,7 @@ const PickListPrint = ({ orders, allDetails }) => {
     const [checkList, setCheckedList] = useState({})
     const [test, setTest] = useState(true)
     const [productDetails, setProductDetails] = useState([])
+    const [getOrderDate, setGetOrderDate] = useState()
 
 
 
@@ -99,19 +101,19 @@ const PickListPrint = ({ orders, allDetails }) => {
             )
             const individualOrder = allDetails && allDetails.length > 0 && allDetails.find(data => data.orderId === indexId)
 
-            console.log(individualOrder,"individualOrder")
-                const normalProduct = []
-                const liquorProduct = []
+            console.log(individualOrder, "individualOrder")
+            const normalProduct = []
+            const liquorProduct = []
 
-            individualOrder.orderDetails.map((list)=>{
-                if(list.category_id !== 5){
+            individualOrder.orderDetails.map((list) => {
+                if (list.category_id !== 5) {
                     normalProduct.push(list)
-                }else{
+                } else {
                     liquorProduct.push(list)
                 }
             })
 
-            productDetails.push({normalProduct,liquorProduct,wholeDetails:individualOrder})
+            productDetails.push({ normalProduct, liquorProduct, wholeDetails: individualOrder })
         }
         setTest(!test)
     }
@@ -119,17 +121,27 @@ const PickListPrint = ({ orders, allDetails }) => {
 
     const printviewModelOpen = (name, id) => {
         let orderDetailsArr = [];
-        // const individualOrder = allDetails && allDetails.length > 0 && allDetails.find(data => data.orderId === id)
+        let clickedDate = null
+
+        allDetails.filter((date) => {
+            if (date.orderId === id) {
+                clickedDate = date.orderDate
+                setGetOrderDate(date.orderDate)
+            }
+        })
+
         allDetails.map((order, index) => {
-            orderDetailsArr.push({
-                orderid: order.orderId,
-                cardno: order.cardNumber,
-                name: order.userName,
-                totalamount: order.orderTotalAmount,
-                print: <Checkbox onClick={(event) => handleCheck(event, order.orderId)} name={"checked" + order.orderId}
-                    checked={checkList["checked" + order.orderId]} value={checkList["checked" + order.orderId]} />,
-                id: order.orderId
-            })
+            if (order.orderDate === clickedDate) {
+                orderDetailsArr.push({
+                    orderid: order.orderId,
+                    cardno: order.cardNumber,
+                    name: order.userName,
+                    totalamount: order.orderTotalAmount,
+                    print: <Checkbox onClick={(event) => handleCheck(event, order.orderId)} name={"checked" + order.orderId}
+                        checked={checkList["checked" + order.orderId]} value={checkList["checked" + order.orderId]} />,
+                    id: order.orderId
+                })
+            }
         })
 
         setOrderDetailsList(orderDetailsArr)
@@ -193,7 +205,14 @@ const PickListPrint = ({ orders, allDetails }) => {
                         specialProp={true}
                     />
                 }
-                <Modalcomp title="Pick List Print View" visible={printView} closemodal={() => closemodelFunc()}>
+                <Modalcomp title={"Pick List for" + " " + moment(getOrderDate).format("DD/MM/yyyy")} visible={printView} closemodal={() => closemodelFunc()}>
+                    <ReactToPrint
+                        trigger={() => <div className="printBtn"><Button disabled={productDetails.length > 0 ? false : true} variant="contained" color="primary">
+                            print
+                      </Button></div>}
+                        content={() => componentRef.current}
+                    // onAfterPrint={()=>setProductDetails([])}
+                    />
                     <TableComponent
                         heading={[
                             { id: "", label: "S.No" },
@@ -204,6 +223,8 @@ const PickListPrint = ({ orders, allDetails }) => {
                             { id: "print", label: "Print" }
                         ]}
                         rowdata={orderDetailsList}
+                        tablemasterclass={"pickListTableContainer"}
+                        tableRowCss={"pickListTableRowCss"}
                         // actionclose="close"
                         DeleteIcon="close"
                         EditIcon="close"
@@ -215,7 +236,7 @@ const PickListPrint = ({ orders, allDetails }) => {
                         specialProp={true}
                     />
                     <ReactToPrint
-                        trigger={() => <div className="printBtn"><Button disabled={productDetails.length > 0 ? false :true} variant="contained" color="primary">
+                        trigger={() => <div className="printBtn"><Button disabled={productDetails.length > 0 ? false : true} variant="contained" color="primary">
                             print
                       </Button></div>}
                         content={() => componentRef.current}

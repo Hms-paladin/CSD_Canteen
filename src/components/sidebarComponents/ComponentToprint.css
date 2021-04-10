@@ -30,6 +30,7 @@
 .printBtn {
   display: flex;
   justify-content: flex-end;
+  height: 30px;
 }
 
 .liquorHeader {
@@ -52,4 +53,32 @@
 
 .orderValuesCol {
   margin-right: 10px;
+}
+
+/* pickList printTable css  */
+
+.pickListTableContainer .table td,
+.table th,
+.pickListTableContainer tbody th,
+.pickListTableContainer tbody td {
+  padding: 0px !important;
+  vertical-align: middle;
+}
+
+.pickListTableContainer .tableWrapper {
+  min-height: fit-content;
+}
+
+.pickListTableContainer .table > tbody > tr > th:first-child {
+  padding-left: 20px !important;
+}
+
+.pickListTableContainer tbody tr {
+  height: 10px;
+}
+
+.pickListTableRowCss td:nth-child(5) {
+  text-align: right;
+  padding-right: 5% !important;
+  width: 20%;
 }

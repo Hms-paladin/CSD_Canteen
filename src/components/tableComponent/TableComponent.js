@@ -375,8 +375,6 @@ export default class Tablecomponent extends Component {
                   .map((row, index, item) => {
                     const isItemSelected = isSelected(row.name);
                     const labelId = `enhanced-table-checkbox-${index}`;
-                    console.log("labelid", labelId)
-                    console.log("rendering", row);
                     return (
                       <TableRow
                         hover
