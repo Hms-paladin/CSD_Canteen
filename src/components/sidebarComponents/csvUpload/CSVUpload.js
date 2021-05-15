@@ -57,10 +57,13 @@ function Reader() {
     const updatedProductList = []
 
     csvFileValue.filter((fileList) => {
+      if(fileList[0] && fileList[1] && fileList[2]){
       updatedProductList.push({
         "indexNumber": fileList[0],
-        "productQuantity": fileList[1]
+        "productQuantity": fileList[1],
+        "price": fileList[2]
       })
+    }
     })
 
     axios({
@@ -71,7 +74,7 @@ function Reader() {
       },
       data: {
         "inventoryList": updatedProductList,
-        'modified_date':moment(new Date()).format('yyyy-MM-DD, h:mm:ss')
+        'modified_date':moment(new Date()).format('yyyy-MM-DD h:mm:ss')
       },
     })
       .then(function (response) {
