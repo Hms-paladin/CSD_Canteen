@@ -4,7 +4,8 @@ import TableComponent from "../tableComponent/TableComponent";
 import { useDispatch, connect } from "react-redux";
 import { getOrdersList } from "../../actions/orders";
 import '../../App.css';
-
+import { Input } from 'antd'
+const { Search } = Input;
 
 const Orders = ({ orders, allDetails }) => {
 
@@ -13,12 +14,16 @@ const Orders = ({ orders, allDetails }) => {
 
     const [orderView, setOrderView] = useState({})
     const [orderDetails, setOrderDetails] = useState([])
-
+    const [filterData, setFilterData] = useState(orders)
+    const [searchBox, setSearchBox] = useState(null)
     const dispatch = useDispatch();
 
     useEffect(() => {
         dispatch(getOrdersList())
     }, [dispatch])
+    useEffect(() => {
+        setFilterData(orders)
+    }, [orders])
 
     const modelopen = (e, id) => {
 
@@ -58,10 +63,46 @@ const Orders = ({ orders, allDetails }) => {
         dispatch(getOrdersList({ startDate: data.startDate, endDate: data.endDate }))
     }
 
+
+    console.log("props", orders)
+
+    const onSearch = (e) => {
+        console.log(e.target.value, "Search_data")
+        setSearchBox(e.target.value)
+        const productSearch = orders.filter((data) => {
+            console.log(data, "Search_data")
+            if (e.target.value === null)
+                return data
+
+            else if (data.orderId !== null && data.orderId.toString().toLowerCase().includes(e.target.value.toLowerCase())
+                || (data.cardNumber != null && data.cardNumber.toString().toLowerCase().includes(e.target.value.toLowerCase()))
+                || (data.orderDate != null && data.orderDate.toString().toLowerCase().includes(e.target.value.toLowerCase()))
+                || (data.orderTotalAmount != null && data.orderTotalAmount.toString().toLowerCase().includes(e.target.value.toLowerCase()))
+                || (data.userName != null && data.userName.toString().toLowerCase().includes(e.target.value.toLowerCase()))
+            ) {
+                return data
+            }
+        })
+        setSearchBox(e.target.value)
+        setFilterData(productSearch)
+        console.log(filterData, "filterData");
+
+    }
+
+
+
+    console.log(searchBox, "test")
+    console.log(orders, "orders")
+    console.log(filterData, "filterData");
     return (
         <div className="main-content">
             <TableHeader title={showOrder ? "Orders" : "Order view"} showDatePicker={showOrder ? true : false} showIndividualOrder={showIndividualOrder} orderView={orderView} changeView={changeView} getrangeDate={(data) => { getrangeDate(data) }} />
-
+            <div style={{ margin: 28 }}>
+                <label style={{ fontSize: 17 }}>Order Search</label>
+                <div>
+                    <Search placeholder="input search text" onChange={(e) => onSearch(e)} value={searchBox} style={{ width: 240, marginTop: 13 }} />
+                </div>
+            </div>
             <div className="main-content-details">
                 {showOrder && <TableComponent
                     heading={[
@@ -73,7 +114,7 @@ const Orders = ({ orders, allDetails }) => {
                         { id: "orderTotalAmount", label: "Total Amount (₹)" },
                         { id: "", label: "Action" }
                     ]}
-                    rowdata={orders && orders.length > 0 ? orders : []}
+                    rowdata={filterData && filterData.length > 0 ? filterData : []}
                     // actionclose="close"
                     DeleteIcon="close"
                     EditIcon="close"

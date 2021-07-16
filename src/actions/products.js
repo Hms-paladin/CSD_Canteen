@@ -15,7 +15,7 @@ export const getProductDetails = () => async dispatch => {
 
         const url = `${apiurl}getProductListWeb`;
         const body = {
-            "limit":1000000,
+            "limit":10000000,
             "pageno":1
         }
         const res = await axios.post(url,body,config);

@@ -16,6 +16,8 @@ const Productview = ({ productView }) => {
                 <div>{productView && productView.indexNumber}</div>
                 <div className="heads">Category</div>
                 <div>{productView && productView.categoryName}</div>
+                <div className="heads">Rate</div>
+                <div>{productView && productView.productRate}</div>
 
             </div>
             <div className="productdetailright">
@@ -23,6 +25,8 @@ const Productview = ({ productView }) => {
                 <div>{productView && productView.productName}</div>
                 <div className="heads">Sub Category</div>
                 <div>{productView && productView.subCategoryName}</div>
+                <div className="heads">Quantity</div>
+                <div>{productView && productView.balanceQuantity}</div>
             </div>
 
         </div>

@@ -8,23 +8,45 @@ import {getPaymentListData} from "../../actions/payment"
 const PaymentDetails = ({ paymentdata }) => {
 
     const dispatch = useDispatch();
+    const[tabledata,settabledata]=React.useState([])
 
     useEffect(() => {
         dispatch(getPaymentListData())
     },[])
+    // useEffect(() => {
+    //     let arr=[]
+    //     paymentdata.map((data)=>{   
+    //     arr.push({
+    //         orderid: data.orderid ,
+    //         orderamount : data.orderamount,
+    //         Name:data.Name,
+    //         BankName:data.BankName,
+    //         TransactionId:data.TransactionId,
+    //         id:1,
+
+    //     })
+        
+    //     })
+    //     console.log(arr,"arr")
+    // },[paymentdata])
+    const getrangeDate = (data) => {
+        dispatch(getPaymentListData({ startDate: data.startDate, endDate: data.endDate }))
+    }
     const [show,setShow] = useState(true)
+    console.log(paymentdata,"paymentdata")
     return(
         <div className="main-content">
-        <TableHeader title="Payment Details" showDatePicker={show ? true : false} showDocuments={true} />
+        <TableHeader title="Payment Details" showDatePicker={show ? true : false} showDocuments={true} getrangeDate={(data) => { getrangeDate(data) }}/>
 
         <div className="main-content-details">
     <TableComponent
      heading={[
-        { id: "", label: "S.No" },
-        { id: "orderid", label: "Order Id" },  { id: "date", label: "Order Date" },,
-        { id: "orderamount", label: "Order Amount (₹)" },
+        { id: "id", label: "S.No" },
+        { id: "orderId", label: "Order Id" },  
+        { id: "orderDate", label: "Order Date" },,
+        { id: "orderAmount", label: "Order Amount (₹)" },
         { id: "name", label: "Name" },
-        { id: "bankname", label: "Bank Name" }, 
+        // { id: "bankName", label: "Bank Name" }, 
         { id: "transactionid", label: "Transaction Id" },  
     ]}
 

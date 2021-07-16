@@ -12,12 +12,14 @@ export default function(state=initalState,action) {
         case GET_PRODUCTS:
             let products = [];
             payload && payload.length > 0 && payload.map((data) => {
-                const {productId,indexNumber,categoryName,subCategoryName,productName} = data;
+                const {productId,indexNumber,categoryName,subCategoryName,productName,productRate,balanceQuantity} = data;
                 products.push({
                     indexNumber,
                     categoryName,
                     subCategoryName,
                     productName,
+                    productRate,
+                    balanceQuantity,
                     id:productId
                 })
             })

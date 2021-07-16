@@ -31,7 +31,9 @@
     display: flex;
     flex-direction: column;
     justify-content: space-around;
+
 }
 .heads{
     font-weight: 600;
+    padding-top: 10px;
 }

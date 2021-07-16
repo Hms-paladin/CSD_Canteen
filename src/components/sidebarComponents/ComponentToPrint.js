@@ -59,6 +59,7 @@ export default class ComponentToPrint extends React.Component {
                             </div>
                             <div className="printtable">
                                 <table style={{ width: "100%" }}>
+                                <thead>
                                     <tr>
                                         <th>S.No</th>
                                         <th>Index</th>
@@ -67,9 +68,11 @@ export default class ComponentToPrint extends React.Component {
                                         <th>Rate+TAX</th>
                                         <th>Amount</th>
                                     </tr>
+                                    </thead>
                                     {item.normalProduct.map((data, index) => {
                                         return (
                                             <>
+                                            {/* <tbody> */}
                                                 <tr>
                                                     <td>{index + 1}</td>
                                                     <td>{data.indexNumber}</td>
@@ -77,7 +80,17 @@ export default class ComponentToPrint extends React.Component {
                                                     <td>{data.productQty}</td>
                                                     <td>{data.productRate.toString().includes(".") ? data.productRate : data.productRate + ".00"}</td>
                                                     <td>{data.productAmount.toString().includes(".") ? data.productAmount : data.productAmount + ".00"}</td>
+                                                    
                                                 </tr>
+                                                {/* <tr></tr>
+                                                <tr></tr>
+                                                <tr></tr>
+                                                <tr></tr> */}
+                                                {/* </tbody> */}
+                                               {(index+1)===item.normalProduct.length&& 
+                                                <tr ><td></td><td></td><td></td><td></td><td></td><td style={{whiteSpace: 'nowrap'}}><div style={{marginTop:"80px",marginBottom:"0px"}}>Convenience Fee 10</div></td></tr>
+                                                }
+                                                {/* <tr><div style={{width:"100%",paddingLeft:"50px",marginTop:"30px",display:"flex",justifyContent:"flex-end"}}>Convenience Fee 10</div></tr> */}
                                                 {/* {orderDetailsLength === index + 1 && <tfoot>
                                                         <tr>
                                                             <td></td>
@@ -89,10 +102,16 @@ export default class ComponentToPrint extends React.Component {
                                                     </tfoot>} */}
                                             </>
                                         )
+                                       
                                     })}
+                                     
                                 </table>
-                            </div>
 
+                                
+                            </div>
+                            
+                            
+                            
 
                             {item.liquorProduct.length > 0 &&
                                 <div className="liquorHeader">

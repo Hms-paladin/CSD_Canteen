@@ -60,13 +60,15 @@ const ProductManagement = ({ products,allproducts }) => {
              if(e.target.value=== null)
                return data
       
-              else if (data.indexNumber !== null && data.indexNumber.toLowerCase().includes(e.target.value.toLowerCase())
-              || (data.categoryName != null && data.categoryName.toLowerCase().includes(e.target.value.toLowerCase()))
-              || (data.subCategoryName != null && data.subCategoryName.toLowerCase().includes(e.target.value.toLowerCase()))
-              || (data.productName != null && data.productName.toLowerCase().includes(e.target.value.toLowerCase()))
-              ) {
-                return data
-            }   
+               else if (data.indexNumber !== null && data.indexNumber.toLowerCase().includes(e.target.value.toLowerCase())
+               || (data.categoryName != null && data.categoryName.toLowerCase().includes(e.target.value.toLowerCase()))
+               || (data.subCategoryName != null && data.subCategoryName.toLowerCase().includes(e.target.value.toLowerCase()))
+               || (data.productName != null && data.productName.toLowerCase().includes(e.target.value.toLowerCase()))
+               || (data.subCategoryName != null && data.productRate.toLowerCase().includes(e.target.value.toLowerCase()))
+               || (data.productName != null && data.balanceQuantity.toLowerCase().includes(e.target.value.toLowerCase()))
+               ) {
+                 return data
+             }   
           })
           setSearchBox(e.target.value)
           setFilterData(productSearch)
@@ -89,7 +91,9 @@ const ProductManagement = ({ products,allproducts }) => {
             { id: "indexNumber", label: "Product Id" },
             { id: "categoryName", label: "Category" },
             { id: "subCategoryName", label: "SubCategory" },
-            { id: "productName", label: "Product Name" },             
+            { id: "productName", label: "Product Name" }, 
+            { id: "productRate", label: "Rate" }, 
+            { id: "balanceQuantity", label: "Quantity" },             
             { id: "", label: "Action" }
         ]}
    
