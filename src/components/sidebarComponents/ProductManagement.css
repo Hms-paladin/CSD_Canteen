@@ -1,0 +1,21 @@
+.csvuploadContainer > div{
+    margin-bottom: 50px;
+}
+
+.csvuploadContainer .react-csv-input{
+    text-align: left;
+}
+
+.csvuploadContainer .react-csv-input label{
+    color: green;
+    font-weight: 600;
+    margin-bottom: 0;
+}
+
+.csvuploadContainer .react-csv-input .csv-input{
+    margin: 0 0 5px 0;
+}
+
+.csvuploadContainer button{
+    float: left;
+}
