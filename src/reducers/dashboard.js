@@ -1,11 +1,12 @@
 /* eslint-disable import/no-anonymous-default-export */
-import {DASHBOARD_DETAILS,DASHBOARD_ORDER_DETAILS,DASHBOARD_USER_DETAILS,GET_DASHBOARD_DELIVERY} from "../actions/constants";
+import {DASHBOARD_DETAILS,DASHBOARD_ORDER_DETAILS,DASHBOARD_USER_DETAILS,GET_DASHBOARD_DELIVERY,GET_DASHBOARD_DETAILS} from "../actions/constants";
 
 const initalState = {
     dashboardCount:null,
     orderDetails:null,
     userCount:null,
-    dashboardDelivery:null
+    dashboardDelivery:null,
+    getDashboardDetails:[]
 }
 
 
@@ -38,6 +39,9 @@ export default function(state=initalState,action) {
                 })
             })
             return {...state,dashboardDelivery}
+            case GET_DASHBOARD_DETAILS:
+                console.log(payload,"payload")
+                return {...state,getDashboardDetails:payload};
         default:
             return state    
     }

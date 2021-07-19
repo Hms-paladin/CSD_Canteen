@@ -2,7 +2,6 @@ import React from "react";
 import "./TableHeader.css";
 import DateRangeSelect from "../helpers/DateRange/DateRange";
 import { ReactSVG } from "react-svg";
-
 import pdf from "../images/pdf.svg"
 import print from '../images/print.svg'
 import excel from '../images/excel.svg'

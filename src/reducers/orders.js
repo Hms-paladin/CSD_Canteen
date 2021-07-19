@@ -1,5 +1,6 @@
 /* eslint-disable import/no-anonymous-default-export */
 import {GET_ORDERS} from "../actions/constants";
+import moment from 'moment';
 
 
 const initalState = {
@@ -16,7 +17,7 @@ export default function(state=initalState,action) {
                 const {orderId,orderDate,cardNumber,userName,orderTotalAmount} = data;
                 orders.push({
                     orderId,
-                    orderDate,
+                    orderDate:moment(orderDate).format("DD-MM-yyyy"),
                     cardNumber,
                     userName,
                  orderTotalAmount,

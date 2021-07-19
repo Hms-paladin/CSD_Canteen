@@ -24,7 +24,7 @@ const Dashboard = ({ orderCount,userCount,dashboardDelivery }) => {
         dispatch(getDashboardUserDetails())
         dispatch(getDashboardDelivery())
     },[dispatch])
-
+   
 
     const changeDetails = (cno) => {
         if(cno === 1) {
@@ -45,7 +45,6 @@ const Dashboard = ({ orderCount,userCount,dashboardDelivery }) => {
             setFirstDetail(false)
         }
     }
-
 
     return(
         <div className="main-content">
@@ -98,7 +97,7 @@ const Dashboard = ({ orderCount,userCount,dashboardDelivery }) => {
 const mapStateToProps = state => ({
     orderCount:state.dashboard.orderDetails,
     userCount:state.dashboard.userCount,
-    dashboardDelivery:state.dashboard.dashboardDelivery
+    dashboardDelivery:state.dashboard.dashboardDelivery,
 })
 
 export default connect(mapStateToProps)(Dashboard);
