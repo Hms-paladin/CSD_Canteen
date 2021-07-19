@@ -180,6 +180,7 @@ const PickListPrint = ({ orders, allDetails }) => {
                     modelopen={(e, id) => printviewModelOpen(e, id)}
                     // props_loading={this.state.props_loading}
                     specialProp={true}
+                    tableRowCss={"PLTableRowCss"}
                 />}
 
                 {showIndividual &&

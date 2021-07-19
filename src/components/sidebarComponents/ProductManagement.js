@@ -9,6 +9,7 @@ import { getProductDetails } from "../../actions/products";
 import { getSubCategory } from "../../actions/products";
 import CSVUpload from "./csvUpload/CSVUpload.js";
 import { Input, Space } from 'antd';
+import "./ComponentToprint.css";
 
 const { Search } = Input;
 
@@ -90,6 +91,8 @@ const ProductManagement = ({ products, allproducts }) => {
                         { id: "categoryName", label: "Category" },
                         { id: "subCategoryName", label: "SubCategory" },
                         { id: "productName", label: "Product Name" },
+                        { id: "Rate", label: "Rate" },
+                        { id: "Quantity", label: "Quantity" },
                         { id: "", label: "Action" }
                     ]}
                     rowdata={filterData && filterData.length > 0 ? filterData : []}
@@ -100,7 +103,7 @@ const ProductManagement = ({ products, allproducts }) => {
                     Workflow="close"
                     checkbox="close"
                     pdfDownload="close"
-
+                    tableRowCss={"ProductTableRowCss"}
                     modelopen={(e, id) => modelopen(e, id)}
                     // props_loading={this.state.props_loading}
                     specialProp={true}

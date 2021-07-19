@@ -11,8 +11,8 @@ class Inventoryupload extends React.Component {
                 <TableHeader title="Inventory File" />
                 <div className="csvuploadContainer">
                     <CSVUpload page='inventoryUpload' label={"Inventory Upload"} />
-                    <CSVUpload page={"insertCard"} label={"Add Card"} />
-                    <CSVUpload page={"insertProduct"} label={"Add Product"} />
+                    <CSVUpload page={"insertCard"} label={"Card Details Upload"} />
+                    <CSVUpload page={"insertProduct"} label={"Product Upload"} />
                 </div>
             </div>
         )

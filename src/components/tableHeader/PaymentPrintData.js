@@ -4,7 +4,7 @@ import "./PaymentPrintData.css"
 export default class PrintData extends React.Component {
     render() {
         console.log(this.props.printTableData,"printTableData")
-        var printBodyData = this.props.printTableData.map((printdata,index)=>{
+        var printBodyData = this.props.printTableData!=null?this.props.printTableData.map((printdata,index)=>{
             return(
                 <tr>
                  <td>{index+1}</td>
@@ -15,7 +15,7 @@ export default class PrintData extends React.Component {
               <td>{printdata.transactionid}</td>       
             </tr>
             )
-        })
+        }):[]
 
       return (
           <div className="printtabledata">
