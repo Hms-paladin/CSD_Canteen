@@ -16,22 +16,22 @@ export default function (state = initalState, action) {
             payload.length > 0 && payload.map((data) => {
                 const { orderDate } = data;
                 console.log(pickListDate.includes(dateformat(orderDate, "dd/mm/yyyy")),"adddate")
-                if (!pickListDate.includes(dateformat(orderDate, "dd/mm/yyyy"))) {
+                if (!pickListDate.includes(dateformat(orderDate, "dd-mm-yyyy"))) {
                     picklistdata.push({
-                        orderDate: dateformat(orderDate, "dd/mm/yyyy"),
+                        orderDate: dateformat(orderDate, "dd-mm-yyyy"),
                         numberoforder: 1,
                         // data.orderDetails.length
                         id: data.orderId
                     })
-                    pickListDate.push(dateformat(orderDate, "dd/mm/yyyy"))
+                    pickListDate.push(dateformat(orderDate, "dd-mm-yyyy"))
                 }
                 else{
                     
                     let getIndex = []
-
+s
                     pickListDate.filter((da,index)=>{
-                        console.log(dateformat(orderDate, "dd/mm/yyyy"),(da),"hai")
-                        if(dateformat(orderDate, "dd/mm/yyyy") === da){
+                        console.log(dateformat(orderDate, "dd-mm-yyyy"),(da),"hai")
+                        if(dateformat(orderDate, "dd-mm-yyyy") === da){
                             getIndex.push(index)
                         }
                     })

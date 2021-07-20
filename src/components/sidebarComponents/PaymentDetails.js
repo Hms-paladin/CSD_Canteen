@@ -3,7 +3,7 @@ import TableHeader from "../tableHeader/TableHeader";
 import TableComponent from "../tableComponent/TableComponent";
 import {useDispatch,connect} from "react-redux";
 import {getPaymentListData} from "../../actions/payment"
-
+import '../../App.css';
 
 const PaymentDetails = ({ paymentdata }) => {
 
@@ -65,7 +65,7 @@ const PaymentDetails = ({ paymentdata }) => {
     modelopen={(e,id) => this.modelopen(e,id)}
     // props_loading={this.state.props_loading}
     specialProp={true}
-
+    tableRowCss={"PaymentTableRowCss"}
 
 />
     </div>

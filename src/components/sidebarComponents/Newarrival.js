@@ -233,6 +233,7 @@ class Newarrival extends React.Component {
                         specialProp={true}
                         viewModal={this.state.viewModal}
                         clickedId={this.state.clickedId}
+                        tableRowCss={"ArrivalTableRowCss"}
                     />
                 </div>
 

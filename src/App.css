@@ -192,8 +192,34 @@
   text-align: right;
   padding-right: 5%;
 }
-
+.orderTableRowCss td:nth-child(3){padding-left: 3px !important;}
+.orderTableRowCss td:nth-child(5){padding-left: 45px;}
+.orderTableRowCss td:nth-child(4){padding-left: 17px;}
 .orderTableRowCss td:nth-child(6){
   text-align: right;
-  padding-right: 5%;
+  padding-right: 8%;
 }
+.PaymentTableRowCss td:nth-child(5){
+  padding-left: 0px;
+}
+.PaymentTableRowCss td:nth-child(3){
+  padding-left: 3px;
+}
+.PaymentTableRowCss td:nth-child(6){
+  padding-left: 45px;
+}
+.PaymentTableRowCss td:nth-child(4){
+  padding-right: 11%;
+  text-align: right;
+}
+.ArrivalTableRowCss td:nth-child(3), .ArrivalTableRowCss td:nth-child(4){
+  padding-left: 0px;
+}
+.CareerTableRowCss td:nth-child(2),
+.CareerTableRowCss td:nth-child(3),
+.CareerTableRowCss td:nth-child(4),
+.CareerTableRowCss td:nth-child(5),
+.CareerTableRowCss td:nth-child(6){
+  padding-left: 0px;
+}
+

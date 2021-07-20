@@ -181,7 +181,6 @@ export default class ComponentToPrint extends React.Component {
                                                     </>
                                                 )
                                             })}
-
                                         </table>
                                     </div>
                                 </div>
