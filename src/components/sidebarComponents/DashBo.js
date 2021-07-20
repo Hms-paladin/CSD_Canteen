@@ -81,8 +81,8 @@ const DashBo = (props) => {
           </Col>
         </Row>
         <Row style={{ margin: "20px 10px", border: '1px solid #F6F6F6', boxShadow: '5px 5px 5px 5px #DEDEDE', backgroungColor: '#F6F6F6' }}>
-          <p>Orders By Category</p>
           <Col>
+          <p>Orders By Category</p>
             <Chart
               height="90%"
               options={{
@@ -90,8 +90,9 @@ const DashBo = (props) => {
               }} series={percentage} type="donut" width="380" />
           </Col>
           <Col>
+          <p>Orders By Users</p>
             <Chart
-              height="95%"
+              height="80%"
               options={{
                 labels: ["App Users", "Non-Users"]
               }} series={users} type="donut" width="380" />

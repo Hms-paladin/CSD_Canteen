@@ -16,7 +16,7 @@ export default class ComponentToPrint extends React.Component {
         console.log(this.state.productDetails, "proddddddddd")
         return (
             <div>
-                {this.state.productDetails.map((item) => {
+                {this.state.productDetails.map((item,index) => {
                     const orderDetailsLength = item.orderDetails?.length
                     return (
                         <div className="printContainer">
@@ -90,9 +90,7 @@ export default class ComponentToPrint extends React.Component {
                                                 <tr></tr>
                                                 <tr></tr> */}
                                                     {/* </tbody> */}
-                                                    {(index + 1) === item.normalProduct.length &&
-                                                        <tr ><td></td><td></td><td></td><td></td><td></td><td style={{ whiteSpace: 'nowrap' }}><div style={{ marginTop: "80px", marginBottom: "0px" }}>Convenience Fee 10</div></td></tr>
-                                                    }
+
                                                     {/* <tr><div style={{width:"100%",paddingLeft:"50px",marginTop:"30px",display:"flex",justifyContent:"flex-end"}}>Convenience Fee 10</div></tr> */}
                                                     {/* {orderDetailsLength === index + 1 && <tfoot>
                                                         <tr>
@@ -109,10 +107,10 @@ export default class ComponentToPrint extends React.Component {
                                         })}
 
                                     </table>
-
                                 </div>
                                 {/* </div>} */}
                             </div></>}
+                           
 
 
 
@@ -188,7 +186,7 @@ export default class ComponentToPrint extends React.Component {
                                     </div>
                                 </div>
                             }
-
+                            <div style={{marginTop:"8px"}}>Convenience Fee 10</div>
                         </div>
                     )
                 })}
