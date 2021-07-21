@@ -18,7 +18,9 @@ export default class ComponentToPrint extends React.Component {
                 {this.state.productDetails.map((item) => {
                     const orderDetailsLength = item.orderDetails?.length
                     return (
+                       
                         <div className="printContainer">
+                            
                             <div className="canteenDetails">
                                 <div>Golden Palm Canteen</div>
                                 <div>Chennai</div>
@@ -109,7 +111,7 @@ export default class ComponentToPrint extends React.Component {
 
                                 
                             </div>
-                            
+                                
                             
                             
 
