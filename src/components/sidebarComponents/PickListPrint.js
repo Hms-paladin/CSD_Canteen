@@ -17,7 +17,7 @@ const PickListPrint = ({ orders, allDetails }) => {
 
     const [showList, setShowList] = useState(true)
     const [printView, setPrintView] = useState(false)
-
+    const [checkstate, setCheckState] = useState(false)
 
     const [showIndividual, setIndividual] = useState(false)
 
@@ -77,6 +77,13 @@ const PickListPrint = ({ orders, allDetails }) => {
 
 
     const handleCheck = (event, indexId) => {
+        setCheckedList(
+            prevState => ({
+                ...prevState,
+                [event.target.name]: !checkList[event.target.name],
+            })
+        )
+        
         if (selectedPrintedId.includes(indexId)) {
             selectedPrintedId.map((data, index) => {
                 if (data === indexId) {
@@ -84,21 +91,21 @@ const PickListPrint = ({ orders, allDetails }) => {
                     productDetails.splice(index, 1)
                 }
             })
-            setCheckedList(
-                prevState => ({
-                    ...prevState,
-                    [event.target.name]: false,
-                })
-            )
+            // setCheckedList(
+            //     prevState => ({
+            //         ...prevState,
+            //         [event.target.name]: false,
+            //     })
+            // )
 
         } else {
             selectedPrintedId.push(indexId)
-            setCheckedList(
-                prevState => ({
-                    ...prevState,
-                    [event.target.name]: true,
-                })
-            )
+            // setCheckedList(
+            //     prevState => ({
+            //         ...prevState,
+            //         [event.target.name]: true,
+            //     })
+            // )
             const individualOrder = allDetails && allDetails.length > 0 && allDetails.find(data => data.orderId === indexId)
 
             console.log(individualOrder, "individualOrder")
@@ -115,7 +122,10 @@ const PickListPrint = ({ orders, allDetails }) => {
 
             productDetails.push({ normalProduct, liquorProduct, wholeDetails: individualOrder })
         }
+       
         setTest(!test)
+
+
     }
 
 
@@ -132,6 +142,7 @@ const PickListPrint = ({ orders, allDetails }) => {
 
         allDetails.map((order, index) => {
             if (order.orderDate === clickedDate) {
+                console.log(checkList["checked" + order.orderId], "kkkkkkkkkkkkk")
                 orderDetailsArr.push({
                     orderid: order.orderId,
                     cardno: order.cardNumber,
@@ -148,6 +159,31 @@ const PickListPrint = ({ orders, allDetails }) => {
         setPrintView(true)
     }
 
+    useEffect(() => {
+    //     console.log(selectedPrintedId, orderDetailsList, checkList, "Listttttttt")
+    //     if (selectedPrintedId.length === 0) {
+    //         orderDetailsList.map((i)=>{
+    //             i.print=<Checkbox onClick={(event) => handleCheck(event, i.orderid)} name={"checked" + i.orderid}
+    //             checked={false} value={false} />
+    //         })
+    //     }
+    //     else{
+    //         selectedPrintedId.map((id) => {
+    //             orderDetailsList.filter(data => {
+    //                 if (data.orderid === id) {
+    //                     data.print = <Checkbox onClick={(event) => handleCheck(event, data.orderid)} name={"checked" + data.orderid}
+    //                         checked={true} value={true} />
+    //                 }
+    //                 if (data.orderid != id) {
+    //                     data.print = <Checkbox onClick={(event) => handleCheck(event, data.orderid)} name={"checked" + data.orderid}
+    //                         checked={false} value={false} />
+    //                 }
+    //             })
+    //         })
+    //     }
+        setOrderDetailsList(orderDetailsList)
+    }, [checkList])
+
     const componentRef = useRef();
 
     const closemodelFunc = () => {
@@ -156,6 +192,8 @@ const PickListPrint = ({ orders, allDetails }) => {
         setSelectedPrintedId([])
         setProductDetails([])
     }
+    console.log(orderDetailsList, "orderDetailsList")
+    console.log(checkstate, selectedPrintedId, test, "checkList")
 
     return (
         <div className="main-content">
@@ -210,7 +248,7 @@ const PickListPrint = ({ orders, allDetails }) => {
                     <ReactToPrint
                         trigger={() => <div className="printBtn"><Button disabled={productDetails.length > 0 ? false : true} variant="contained" color="primary">
                             print
-                      </Button></div>}
+                        </Button></div>}
                         content={() => componentRef.current}
                     // onAfterPrint={()=>setProductDetails([])}
                     />
@@ -239,7 +277,7 @@ const PickListPrint = ({ orders, allDetails }) => {
                     <ReactToPrint
                         trigger={() => <div className="printBtn"><Button disabled={productDetails.length > 0 ? false : true} variant="contained" color="primary">
                             print
-                      </Button></div>}
+                        </Button></div>}
                         content={() => componentRef.current}
                     // onAfterPrint={()=>setProductDetails([])}
                     />
