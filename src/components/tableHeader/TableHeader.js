@@ -13,6 +13,9 @@ import { Button } from "@material-ui/core";
 import dateformat from "dateformat";
 import { connect } from "react-redux";
 import { getOrdersList } from "../../actions/orders";
+import { Spin, notification } from 'antd';
+import jsPDF from 'jspdf';
+// import autoTable from 'jspdf-autotable'
 
 const ExcelFile = ReactExport.ExcelFile;
 const ExcelSheet = ReactExport.ExcelFile.ExcelSheet;
@@ -54,7 +57,7 @@ class TableHeader extends React.Component {
     //     })
     //       .then((response) => {
     //         console.log(response, "response_data")
-    
+
     //         var tableData = [];
     //         var tableDatafull = [];
     //         response.data.data.map((val, index) => {
@@ -68,7 +71,7 @@ class TableHeader extends React.Component {
     //           })
     //           tableDatafull.push(val)
     //         })
-    
+
     //         self.setState({
     //           weekMonthYearData: tableData,
     //           wk_Mn_Yr_Full_Data: tableDatafull,
@@ -88,48 +91,72 @@ class TableHeader extends React.Component {
 
     }
 
-    // generatepdf = () => {
+    generatepdf = () => {
 
-    //     if(this.state.weekMonthYearData.length===0){
-    //       notification.info({
-    //         description:
-    //           'No Data Found',
-    //           placement:"topRight",
-    //       });
-    //     }
-    //     else{
-    //     const doc = new jsPDF("a4")
-    //     var bodydata = []
-    //     this.state.weekMonthYearData.map((data, index) => {
-    //       bodydata.push([index + 1, data.name, data.Bookdate,dateformat(new Date(data.Canceldate), "hh:MM TT"),data.time])
-    //     })
-    //     doc.autoTable({
-    //       beforePageContent: function (data) {
-    //         doc.text("Cancelled Appoinment", 15, 23);
-    //       },
-    //       margin: { top: 30 },
-    //       showHead: "everyPage",
-    //       theme: "grid",
-    //       head: [['S.No', 'Customer','Booked Date', 'Cancelled Date', 'Time']],
-    //       body: bodydata,
-    //     })
-    
-    //     doc.save('CancelledAppoinment.pdf')
-    //   }
-    //   }
+        if (this.props.Params === null) {
+            notification.info({
+                description:
+                    'No Data Found',
+                placement: "topRight",
+            });
+        }
+        //     else{
+        //     const doc = new jsPDF("a4")
+        //     var bodydata = []
+        //     this.props.Params.map((data, index) => {
+        //       bodydata.push([index + 1, data.orderid, data.date,data.orderamount,data.name,data.transactionid])
+        //     })
+        //     doc.autoTable({
+        //       beforePageContent: function (data) {
+        //         doc.text("Payment Details", 15, 23);
+        //       },
+        //       margin: { top: 30 },
+        //       showHead: "everyPage",
+        //       theme: "grid",
+        //       head: ['S.No', 'Order ID','Date', 'Order Amount', 'Name','Transaction ID'],
+        //       body: bodydata,
+        //     })
 
-    // Notification=()=>{
-    //     notification.info({
-    //       description:
-    //         'No Data Found',
-    //         placement:"topRight",
-    //     });
-    //   }
+        //     doc.save('Payment Details.pdf')
+        //   }
+    }
+
+    Notification = () => {
+        notification.info({
+            description:
+                'No Data Found',
+            placement: "topRight",
+        });
+    }
 
     render() {
         // const {orderId,orderDate,cardNumber,userName} =  this.props.orderView;
-        console.log(this.props.getrangeDate,"getrangeDate");
-
+        console.log(this.props.getrangeDate, "getrangeDate");
+        console.log(this.props.Params, 'params')
+        console.log(this.state.appointlistData, "state")
+        
+        var multiDataSetbody = []
+        this.props.Params!=null&&this.props.Params.map((xldata, index) => {
+            if (index % 2 !== 0) {
+                multiDataSetbody.push([{ value: index + 1, style: { alignment: { horizontal: "center" } } }, { value: xldata.orderid }, { value: xldata.date }, { value: xldata.orderamount }, { value: xldata.name },{value:xldata.transactionid}])
+            } else {
+                multiDataSetbody.push([
+                    { value: index + 1, style: { alignment: { horizontal: "center" }, fill: { patternType: "solid", fgColor: { rgb: "e2e0e0" } } } },
+                    { value: xldata.orderid, style: { fill: { patternType: "solid", fgColor: { rgb: "e2e0e0" } } } }, { value: xldata.date, style: { fill: { patternType: "solid", fgColor: { rgb: "e2e0e0" } } } }, { value: xldata.orderamount, style: { fill: { patternType: "solid", fgColor: { rgb: "e2e0e0" } } } }, { value: xldata.name, style: { fill: { patternType: "solid", fgColor: { rgb: "e2e0e0" } } } }, { value: xldata.transactionid, style: { fill: { patternType: "solid", fgColor: { rgb: "e2e0e0" } } } }])
+            }
+        })
+        const multiDataSet = [
+            {
+                columns: [
+                    { title: "S.No", width: { wpx: 35 }, style: { fill: { patternType: "solid", fgColor: { rgb: "86b149" } } } },
+                    { title: "Customer", width: { wch: 20 }, style: { fill: { patternType: "solid", fgColor: { rgb: "86b149" } } } },
+                    { title: "Booked Date", width: { wpx: 100 }, style: { fill: { patternType: "solid", fgColor: { rgb: "86b149" } } } },
+                    { title: "Cancelled Date", width: { wpx: 100 }, style: { fill: { patternType: "solid", fgColor: { rgb: "86b149" } } } },
+                    { title: "Time", width: { wpx: 90 }, style: { fill: { patternType: "solid", fgColor: { rgb: "86b149" } } } }
+                ],
+                data: multiDataSetbody
+            }
+        ];
         return (
             <div className="table_header">
 
@@ -137,7 +164,7 @@ class TableHeader extends React.Component {
                     <div className="table_header-title">
                         {this.props.showIndividualOrder && <div className="orderview__arr" onClick={this.props.changeView}>
                             &larr;
-                    </div>}
+                        </div>}
                         {this.props.title && this.props.title}
 
 
@@ -181,7 +208,7 @@ class TableHeader extends React.Component {
 
                     {this.props.showDocuments && <div className="icon-head">
 
-                        {this.state.appointlistData.length === 0 ? <ReactSVG
+                        {this.props.Params === null ? <ReactSVG
                             onClick={this.Notification}
                             src={pdf}
                             style={{ marginRight: "15px", marginLeft: "15px" }}
@@ -191,24 +218,24 @@ class TableHeader extends React.Component {
                             style={{ marginRight: "15px", marginLeft: "15px" }}
                         />}
 
-                        {this.state.appointlistData.length === 0 ? <ReactSVG onClick={this.Notification} src={excel}
+                        {this.props.Params === null ? <ReactSVG onClick={this.Notification} src={excel}
                             style={{ marginRight: "15px" }}
                         /> :
                             <ExcelFile filename={"Payment Details"} element={<ReactSVG src={excel}
                                 style={{ marginRight: "15px" }}
                             />}>
-                                <ExcelSheet name="Payment Details" />
+                                <ExcelSheet dataSet={multiDataSet} name="Payment Details" />
                             </ExcelFile>
                         }
 
-                        {this.state.appointlistData.length === 0 ?
+                        {this.props.Params === null ?
                             <ReactSVG src={print} onClick={this.Notification} /> :
                             <ReactToPrint
                                 trigger={() => <ReactSVG src={print} />}
                                 content={() => this.componentRef}
                             />}
                         <div style={{ display: "none" }}>
-                            <PaymentPrintData printTableData={this.state.appointlistData}
+                            <PaymentPrintData printTableData={this.props.Params}
                                 ref={el => (this.componentRef = el)} />
                         </div>
                     </div>
@@ -243,7 +270,7 @@ export default connect()(TableHeader);
 // import { apiurl } from "../../App";
 // import { Spin,notification } from 'antd';
 // import jsPDF from 'jspdf';
-// import 'jspdf-autotable';
+
 // import ReactToPrint from "react-to-print";
 // import ReactExport from 'react-data-export';
 // import PrintData from "./printdataCancel";
@@ -272,7 +299,7 @@ export default connect()(TableHeader);
 //       endDate: new Date(),
 //       key: 'selection',
 //   }],true)
-    
+
 //   }
 
 //   dayReport=(data,firstOpen)=>{

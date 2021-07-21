@@ -85,10 +85,10 @@
 .VendorDetailsDiv tbody td {
   font-size: 1rem;
 }
-.VendorDetailsDiv td:nth-child(4) {
+/* .VendorDetailsDiv td:nth-child(4) {
   text-align: left;
-  padding-left: 3%;
-}
+  padding-left: 8%;
+} */
 .MuiTablePagination-caption {
   font-size: 1rem;
 }
@@ -188,12 +188,40 @@
 
 /* orderPage css */
 
-.orderIndiTableRowCss td:nth-child(5),.orderIndiTableRowCss td:nth-child(6){
-  text-align: right;
-  padding-right: 5%;
+.orderIndiTableRowCss td:nth-child(5){padding-left: 0%;}
+.orderIndiTableRowCss td:nth-child(3){padding-left: 0%;}
+.orderIndiTableRowCss td:nth-child(6){
+  /* text-align: right; */
+  padding-left: 4%;
 }
-
+.orderTableRowCss td:nth-child(3){padding-left: 3px !important;}
+.orderTableRowCss td:nth-child(5){padding-left: 45px;}
+.orderTableRowCss td:nth-child(4){padding-left: 17px;}
 .orderTableRowCss td:nth-child(6){
   text-align: right;
   padding-right: 8%;
 }
+.PaymentTableRowCss td:nth-child(5){
+  padding-left: 0px;
+}
+.PaymentTableRowCss td:nth-child(3){
+  padding-left: 3px;
+}
+.PaymentTableRowCss td:nth-child(6){
+  padding-left: 45px;
+}
+.PaymentTableRowCss td:nth-child(4){
+  padding-left: 7%;
+  /* text-align: right; */
+}
+.ArrivalTableRowCss td:nth-child(3), .ArrivalTableRowCss td:nth-child(4){
+  padding-left: 0px;
+}
+.CareerTableRowCss td:nth-child(2),
+.CareerTableRowCss td:nth-child(3),
+.CareerTableRowCss td:nth-child(4),
+.CareerTableRowCss td:nth-child(5),
+.CareerTableRowCss td:nth-child(6){
+  padding-left: 0px;
+}
+

@@ -97,12 +97,12 @@ const Orders = ({ orders, allDetails }) => {
     return (
         <div className="main-content">
             <TableHeader title={showOrder ? "Orders" : "Order view"} showDatePicker={showOrder ? true : false} showIndividualOrder={showIndividualOrder} orderView={orderView} changeView={changeView} getrangeDate={(data) => { getrangeDate(data) }} />
-            <div style={{ margin: 28 }}>
+            {showOrder &&<div style={{ margin: 28 }}>
                 <label style={{ fontSize: 17 }}>Order Search</label>
                 <div>
-                    <Search placeholder="input search text" onChange={(e) => onSearch(e)} value={searchBox} style={{ width: 240, marginTop: 13 }} />
+                    <Search placeholder="Input search text" onChange={(e) => onSearch(e)} value={searchBox} style={{ width: 240, marginTop: 13 }} />
                 </div>
-            </div>
+            </div>}
             <div className="main-content-details">
                 {showOrder && <TableComponent
                     heading={[
@@ -115,7 +115,7 @@ const Orders = ({ orders, allDetails }) => {
                         { id: "", label: "Action" }
                     ]}
                     rowdata={filterData && filterData.length > 0 ? filterData : []}
-                    // actionclose="close"
+                    // actionclose="close"sssss
                     DeleteIcon="close"
                     EditIcon="close"
                     checkbox="close"

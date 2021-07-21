@@ -82,3 +82,36 @@
   padding-right: 5% !important;
   width: 20%;
 }
+
+.PLTableRowCss td:nth-child(4) {
+    text-align: left;
+    padding-left: 15px !important;
+}
+.PLTableRowCss td:nth-child(2) {
+  padding-left: 3px;
+}
+.PLTableRowCss td:nth-child(3) {
+  padding-left: 7%;
+}
+.ProductTableRowCss td:nth-child(2){
+  padding-left: 5px !important;
+}
+.ProductTableRowCss td:nth-child(6){
+  padding-left: 2px !important;
+}
+.ProductTableRowCss td:nth-child(7){
+  padding-left: 25px !important;
+}
+.ProductTableRowCss td:nth-child(3){
+  padding-left: 0px;
+}
+.ProductTableRowCss td:nth-child(4){
+  padding-left: 0px;
+  padding-right: 35px;
+}
+.ProductTableRowCss td:nth-child(5){
+  padding-left: 0px;
+}
+.table>tbody>tr>th:first-child {
+  padding-left: 20px !important;
+}

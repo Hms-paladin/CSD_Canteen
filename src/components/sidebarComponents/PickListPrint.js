@@ -180,6 +180,7 @@ const PickListPrint = ({ orders, allDetails }) => {
                     modelopen={(e, id) => printviewModelOpen(e, id)}
                     // props_loading={this.state.props_loading}
                     specialProp={true}
+                    tableRowCss={"PLTableRowCss"}
                 />}
 
                 {showIndividual &&
@@ -205,7 +206,7 @@ const PickListPrint = ({ orders, allDetails }) => {
                         specialProp={true}
                     />
                 }
-                <Modalcomp title={"Pick List for" + " " + moment(getOrderDate).format("DD/MM/yyyy")} visible={printView} closemodal={() => closemodelFunc()}>
+                <Modalcomp title={"Pick List for" + " " + moment(getOrderDate).format("DD-MM-yyyy")} visible={printView} closemodal={() => closemodelFunc()}>
                     <ReactToPrint
                         trigger={() => <div className="printBtn"><Button disabled={productDetails.length > 0 ? false : true} variant="contained" color="primary">
                             print

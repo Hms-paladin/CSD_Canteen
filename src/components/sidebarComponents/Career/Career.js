@@ -8,7 +8,7 @@ import {useDispatch,connect,useSelector} from "react-redux";
 import CareerModal from "./CareerModal"
 import CareerView from "./CareerView"
 import CareerDelete from "./CareerDelete"
-
+import '../../../App.css';
 
 
 
@@ -104,6 +104,7 @@ const Career = () => {
         pdfDownload="close"
         // props_loading={this.state.props_loading}
         specialProp={true}        
+        tableRowCss={"CareerTableRowCss"}
 />
         </div>
     </div>

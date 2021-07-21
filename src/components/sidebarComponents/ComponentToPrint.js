@@ -20,7 +20,7 @@ export default class ComponentToPrint extends React.Component {
                     return (
                        
                         <div className="printContainer">
-                            
+                            {item.normalProduct.length>0&&<>                          
                             <div className="canteenDetails">
                                 <div>Golden Palm Canteen</div>
                                 <div>Chennai</div>
@@ -89,9 +89,9 @@ export default class ComponentToPrint extends React.Component {
                                                 <tr></tr>
                                                 <tr></tr> */}
                                                 {/* </tbody> */}
-                                               {(index+1)===item.normalProduct.length&& 
+                                               {/* {(index+1)===item.normalProduct.length&& 
                                                 <tr ><td></td><td></td><td></td><td></td><td></td><td style={{whiteSpace: 'nowrap'}}><div style={{marginTop:"80px",marginBottom:"0px"}}>Convenience Fee 10</div></td></tr>
-                                                }
+                                                } */}
                                                 {/* <tr><div style={{width:"100%",paddingLeft:"50px",marginTop:"30px",display:"flex",justifyContent:"flex-end"}}>Convenience Fee 10</div></tr> */}
                                                 {/* {orderDetailsLength === index + 1 && <tfoot>
                                                         <tr>
@@ -110,8 +110,7 @@ export default class ComponentToPrint extends React.Component {
                                 </table>
 
                                 
-                            </div>
-                                
+                            </div></>}
                             
                             
 
@@ -182,10 +181,12 @@ export default class ComponentToPrint extends React.Component {
                                             })}
 
                                         </table>
+                                        
                                     </div>
+                                 
                                 </div>
                             }
-
+                            <div>Convenience fee   10</div>
                         </div>
                     )
                 })}
