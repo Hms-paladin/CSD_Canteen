@@ -14,7 +14,8 @@ import FirstPageIcon from '@material-ui/icons/FirstPage';
 import KeyboardArrowLeft from '@material-ui/icons/KeyboardArrowLeft';
 import KeyboardArrowRight from '@material-ui/icons/KeyboardArrowRight';
 import LastPageIcon from '@material-ui/icons/LastPage';
-import { Checkbox } from 'antd';
+// import { Checkbox } from 'antd';
+import Checkbox from '@material-ui/core/Checkbox';
 import ViewImageModal from "../helpers/ViewImageModal/ViewImageModal";
 
 
@@ -257,7 +258,8 @@ export default class Tablecomponent extends Component {
       viewdata: null,
       type: "",
       title: "",
-      pdfurl:this.props.pdfURL
+      pdfurl:this.props.pdfURL,
+      checkList:[]
     };
   }
 
@@ -311,7 +313,20 @@ export default class Tablecomponent extends Component {
     this.setState({ dense: event.target.checked });
   }
 
-  
+  handleCheck(event, orderid, index) {
+    if (this.state.checkList && this.state.checkList.includes(orderid)) {
+      this.state.checkList.map((data, index) => {
+        if (data === orderid) {
+          this.state.checkList.splice(index, 1);
+          this.props.CheckItems(orderid, index)
+        }
+      })
+    }
+    else {
+      this.setState({ checkList: [...this.state.checkList, orderid] });
+      this.props.CheckItems(orderid, index)
+    }
+  }
 
   UNSAFE_componentWillReceiveProps(newProps) {
     console.log(newProps, "componentWillReceivePropsrowdata")
@@ -467,9 +482,11 @@ export default class Tablecomponent extends Component {
                           <TableCell
                             className={`${this.props.tableicon_align}`}
                           >
-                            {this.props.checkbox === "close" ? null : (
-                              <Checkbox className="checkbox_row" />
-                            )}
+                            {this.props.checkbox === "close" ? null :
+
+                              (<Checkbox className="checkbox_row" onClick={(e) => this.handleCheck(e, row.orderid, index)} checked={this.state.checkList.includes(row.orderid) ? true : false}
+                              />)
+                            }
                           </TableCell>
                         )}
                       </TableRow>

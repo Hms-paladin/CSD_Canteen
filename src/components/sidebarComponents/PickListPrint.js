@@ -31,8 +31,9 @@ const PickListPrint = ({ orders, allDetails }) => {
     const [getOrderDate, setGetOrderDate] = useState()
     const [check, setCheck] = useState(1)
     const [uncheck, setUnCheck] = useState(1)
-    const pageStyle = `{ size: 4*6in./10*15cm}`;
-    // const pageStyle1 = `{ size: A4}`;
+    const [id, setid] = useState()
+    const pageStyle = `{ size: 10*15cm}`;
+    const pageStyle1 = "@page {margin-top:100px;}";
 
     const dispatch = useDispatch();
 
@@ -77,90 +78,60 @@ const PickListPrint = ({ orders, allDetails }) => {
     }
 
 
-    const handleCheck = (event, indexId) => {
-        console.log(orderDetailsList,"ordersssss")
-        if (selectedPrintedId.includes(indexId)) {
-            // setUnCheck(prevState => ({
-            //     ...prevState
-            // }))
-            selectedPrintedId.map((data, index) => {
-                if (data === indexId) {
-                    selectedPrintedId.splice(index, 1);
-                    productDetails.splice(index, 1)
-                }
-            })
-            setCheckedList(
-                prevState => ({
-                    ...prevState,
-                    [event.target.name]: false,
-                })
-            )
-
-
-        } else {
-            selectedPrintedId.push(indexId)
-            setCheckedList(
-                prevState => ({
-                    ...prevState,
-                    [event.target.name]: true,
-                })
-            )
-            // setCheck(prevState => ({
-            //     ...prevState
-            // }))
-            const individualOrder = allDetails && allDetails.length > 0 && allDetails.find(data => data.orderId === indexId)
-
-            console.log(individualOrder, "individualOrder")
-            const normalProduct = []
-            const liquorProduct = []
-
-            individualOrder.orderDetails.map((list) => {
-                if (list.category_id !== 5) {
-                    normalProduct.push(list)
-                } else {
-                    liquorProduct.push(list)
-                }
-            })
-
-            productDetails.push({ normalProduct, liquorProduct, wholeDetails: individualOrder })
-        }
-        setTest(!test)
-
-    }
-
-    // useEffect(() => {
-    //     selectedPrintedId.map((data) => {
-    //         orderDetailsList.filter(item => {
-    //             if (item.orderid == data) {
-    //                 item.print = <Checkbox onClick={(event) => handleCheck(event, item.orderid)} name={"checked" + item.orderid}
-    //                     checked={true} value={true} />
+    // const handleCheck = (event, indexId,i) => {
+    //     setid(i)
+    //     console.log(orderDetailsList,i,"ordersssss")
+    //     // orderDetailsList[i].print=<Checkbox onClick={(event) => handleCheck(event, orderDetailsList[i].orderid,i)} name={"checked" + orderDetailsList[i].orderid} checked={true} value={true} />
+    //     if (selectedPrintedId.includes(indexId)) {
+    //         setUnCheck(prevState => ({
+    //             ...prevState
+    //         }))
+    //         selectedPrintedId.map((data, index) => {
+    //             if (data === indexId) {
+    //                 selectedPrintedId.splice(index, 1);
+    //                 productDetails.splice(index, 1)
     //             }
     //         })
-    //     })
-    //     console.log(orderDetailsList, selectedPrintedId, "ordersssss")
-    //     setOrderDetailsList(orderDetailsList)
-    // }, [check])
-
-    // useEffect(() => {
-    //     if (selectedPrintedId.length > 0) {
-    //         selectedPrintedId.map((data) => {
-    //             orderDetailsList.filter(item => {
-    //                 if (item.orderid != data) {
-    //                     item.print = <Checkbox onClick={(event) => handleCheck(event, item.orderid)} name={"checked" + item.orderid}
-    //                         checked={false} value={false} />
-    //                 }
+    //         setCheckedList(
+    //             prevState => ({
+    //                 ...prevState,
+    //                 [event.target.name]: false,
     //             })
+    //         )
+
+
+    //     } else {
+    //         selectedPrintedId.push(indexId)
+    //         setCheckedList(
+    //             prevState => ({
+    //                 ...prevState,
+    //                 [event.target.name]: true,
+    //             })
+    //         )
+    //         setCheck(prevState => ({
+    //             ...prevState
+    //         }))
+    //         const individualOrder = allDetails && allDetails.length > 0 && allDetails.find(data => data.orderId === indexId)
+
+    //         console.log(individualOrder, "individualOrder")
+    //         const normalProduct = []
+    //         const liquorProduct = []
+
+    //         individualOrder.orderDetails.map((list) => {
+    //             if (list.category_id !== 5) {
+    //                 normalProduct.push(list)
+    //             } else {
+    //                 liquorProduct.push(list)
+    //             }
     //         })
-    //         setOrderDetailsList(orderDetailsList)
+
+    //         productDetails.push({ normalProduct, liquorProduct, wholeDetails: individualOrder })
     //     }
-    //     else {
-    //         orderDetailsList.map((data) => {
-    //             data.print = <Checkbox onClick={(event) => handleCheck(event, data.orderid)} name={"checked" + data.orderid} checked={false} value={false} />
-    //         })
-    //         setOrderDetailsList(orderDetailsList)
-    //     }
-    //     console.log(orderDetailsList, selectedPrintedId, "ordersssss")
-    // }, [uncheck])
+    //     setTest(!test)
+
+    // }
+
+
 
     const printviewModelOpen = (name, id) => {
         let orderDetailsArr = [];
@@ -181,7 +152,7 @@ const PickListPrint = ({ orders, allDetails }) => {
                     cardno: order.cardNumber,
                     name: order.userName,
                     totalamount: order.orderTotalAmount,
-                    print: <Checkbox onClick={(event) => handleCheck(event, order.orderId)} name={"checked" + order.orderId} checked={checkList["checked" + order.orderId]} value={checkList["checked" + order.orderId]} />,
+                    // print: <Checkbox onClick={(event) => handleCheck(event, order.orderId,index)} name={"checked" + order.orderId} checked={checkList["checked" + order.orderId]} value={checkList["checked" + order.orderId]} />,
                     id: order.orderId
                 })
             }
@@ -199,7 +170,44 @@ const PickListPrint = ({ orders, allDetails }) => {
         setSelectedPrintedId([])
         setProductDetails([])
     }
-    console.log(orderDetailsList, "orderDetailsList")
+
+    const handleCheck = (indexId, id) => {
+        console.log(indexId, id, "checkkkkk")
+        if (selectedPrintedId.includes(indexId)) {
+
+            selectedPrintedId.map((data, index) => {
+                if (data === indexId) {
+                    selectedPrintedId.splice(index, 1);
+                    productDetails.splice(index, 1)
+                }
+            })
+
+
+        } else {
+            selectedPrintedId.push(indexId)
+
+            const individualOrder = allDetails && allDetails.length > 0 && allDetails.find(data => data.orderId === indexId)
+
+            console.log(individualOrder, "individualOrder")
+            const normalProduct = []
+            const liquorProduct = []
+
+            individualOrder.orderDetails.map((list) => {
+                if (list.category_id !== 5) {
+                    normalProduct.push(list)
+                } else {
+                    liquorProduct.push(list)
+                }
+            })
+
+            productDetails.push({ normalProduct, liquorProduct, wholeDetails: individualOrder })
+        }
+        console.log(productDetails, "productDetails")
+        setTest(!test)
+    }
+
+
+    console.log(orderDetailsList,checkList, "orderDetailsList")
     console.log(checkstate, selectedPrintedId, test, "checkList")
 
     return (
@@ -252,7 +260,7 @@ const PickListPrint = ({ orders, allDetails }) => {
                     />
                 }
                 <Modalcomp title={"Pick List for" + " " + moment(getOrderDate).format("DD-MM-yyyy")} visible={printView} closemodal={() => closemodelFunc()}>
-                    <ReactToPrint pageStyle={pageStyle} 
+                    <ReactToPrint pageStyle='@page { size: 10*15cm; } @media print { body { -webkit-print-color-adjust: exact; padding: 40px !important; } }'
                         trigger={() => <div className="printBtn"><Button disabled={productDetails.length > 0 ? false : true} variant="contained" color="primary">
                             print
                         </Button></div>}
@@ -266,7 +274,8 @@ const PickListPrint = ({ orders, allDetails }) => {
                             { id: "cardno", label: "Card No" },
                             { id: "name", label: "Name" },
                             { id: "totalamount", label: "Total Amount(₹)" },
-                            { id: "print", label: "Print" }
+                            { id: "", label: "" },
+                            { id: "print", label: "Print" },
                         ]}
                         rowdata={orderDetailsList}
                         tablemasterclass={"pickListTableContainer"}
@@ -274,12 +283,13 @@ const PickListPrint = ({ orders, allDetails }) => {
                         // actionclose="close"
                         DeleteIcon="close"
                         EditIcon="close"
-                        checkbox="close"
+                        checkbox={true}
                         UploadIcon="close"
                         GrandTotal="close"
                         Workflow="close"
                         VisibilityIcon="close"
                         specialProp={true}
+                        CheckItems={handleCheck}
                     />
                     <ReactToPrint pageStyle={pageStyle}
                         trigger={() => <div className="printBtn"><Button disabled={productDetails.length > 0 ? false : true} variant="contained" color="primary">

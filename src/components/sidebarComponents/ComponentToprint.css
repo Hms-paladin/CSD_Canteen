@@ -1,6 +1,10 @@
 .printContainer {
   padding: 100px 280px 0px 280px;
 }
+.printContainer div{
+  font-family: 'Courier New';
+  font-weight: 600;
+}
 
 .canteenDetails {
   /* display: flex;
