@@ -188,7 +188,7 @@ export default class ComponentToPrint extends React.Component {
                                  
                                 </div>
                             }
-                            <div>Convenience fee   10</div>
+                            <div style={{marginBottom:"55px"}}>Convenience fee   10</div>
                         </div>
                     )
                 })}

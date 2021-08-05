@@ -10,7 +10,8 @@ import ComponentToPrint from "./ComponentToPrint";
 import Button from '@material-ui/core/Button';
 import moment from 'moment';
 import "./ComponentToprint.css";
-
+import { Input } from 'antd'
+const { Search } = Input;
 
 const PickListPrint = ({ orders, allDetails }) => {
 
@@ -33,13 +34,17 @@ const PickListPrint = ({ orders, allDetails }) => {
     const [uncheck, setUnCheck] = useState(1)
     const [id, setid] = useState()
     const pageStyle = `{ size: 10*15cm}`;
-    const pageStyle1 = "@page {margin-top:100px;}";
+    const [searchBox, setSearchBox] = useState(null)
+    const [filterData, setFilterData] = useState(orders)
 
     const dispatch = useDispatch();
 
     useEffect(() => {
         dispatch(getPrintListData())
     }, [])
+    useEffect(() => {
+        setFilterData(orders)
+    }, [orders])
 
     const modelopen = (e, id) => {
 
@@ -206,13 +211,40 @@ const PickListPrint = ({ orders, allDetails }) => {
         setTest(!test)
     }
 
+    const onSearch = (e) => {
+        console.log(e.target.value, "Search_data")
+        setSearchBox(e.target.value)
+        console.log(orders,"orders")
+        const productSearch = orders.filter((data) => {
+            console.log(data, "Search_data")
+            if (e.target.value === null)
+                return data
 
-    console.log(orderDetailsList,checkList, "orderDetailsList")
+            else if (data.numberoforder !== null && data.numberoforder.toString().toLowerCase().includes(e.target.value.toLowerCase())
+                || (data.orderDate != null && data.orderDate.toString().toLowerCase().includes(e.target.value.toLowerCase()))
+            ) {
+                return data
+            }
+        })
+        setSearchBox(e.target.value)
+        setFilterData(productSearch)
+        // console.log(filterData, "filterData");
+
+    }
+
+    console.log(orders,filterData, "orderDetailsList")
     console.log(checkstate, selectedPrintedId, test, "checkList")
 
     return (
         <div className="main-content">
             <TableHeader title={showList ? "Pick List" : "Pick List view"} showDatePicker={showList ? true : false} showIndividualOrder={showIndividual} orderView={ListView} changeView={changeView} getrangeDate={(data) => { getrangeDate(data) }} />
+
+            <div style={{ margin: 28 }}>
+                <label style={{ fontSize: 17 }}>PickList Search</label>
+                <div>
+                    <Search placeholder="input search text" onChange={(e) => onSearch(e)} value={searchBox} style={{ width: 240, marginTop: 13 }} />
+                </div>
+            </div>
 
             <div className="main-content-details">
                 {showList && <TableComponent
@@ -222,7 +254,8 @@ const PickListPrint = ({ orders, allDetails }) => {
                         { id: "numberoforder", label: "Number Of Orders" },
                         { id: "", label: "Action" }
                     ]}
-                    rowdata={orders && orders.length > 0 ? orders : []}
+                    rowdata={filterData && filterData.length > 0 ? filterData : []}
+                    // rowdata={orders && orders.length > 0 ? orders : []}
                     // actionclose="close"
                     DeleteIcon="close"
                     EditIcon="close"
