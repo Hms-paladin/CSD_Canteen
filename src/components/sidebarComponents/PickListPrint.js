@@ -260,7 +260,7 @@ const PickListPrint = ({ orders, allDetails }) => {
                     />
                 }
                 <Modalcomp title={"Pick List for" + " " + moment(getOrderDate).format("DD-MM-yyyy")} visible={printView} closemodal={() => closemodelFunc()}>
-                    <ReactToPrint pageStyle='@page { size: 10*15cm; } @media print { body { -webkit-print-color-adjust: exact; padding: 40px !important; } }'
+                    <ReactToPrint 
                         trigger={() => <div className="printBtn"><Button disabled={productDetails.length > 0 ? false : true} variant="contained" color="primary">
                             print
                         </Button></div>}
@@ -291,7 +291,7 @@ const PickListPrint = ({ orders, allDetails }) => {
                         specialProp={true}
                         CheckItems={handleCheck}
                     />
-                    <ReactToPrint pageStyle={pageStyle}
+                    <ReactToPrint
                         trigger={() => <div className="printBtn"><Button disabled={productDetails.length > 0 ? false : true} variant="contained" color="primary">
                             print
                         </Button></div>}

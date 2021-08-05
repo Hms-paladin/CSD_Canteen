@@ -209,7 +209,7 @@ class TableHeader extends React.Component {
                             style={{ marginRight: "15px", marginLeft: "15px" }}
                         />} */}
 
-                        {this.props.Params === null ? <ReactSVG onClick={this.Notification} src={excel}
+                        {/* {this.props.Params === null ? <ReactSVG onClick={this.Notification} src={excel}
                             style={{ marginRight: "15px" }}
                         /> :
                             <ExcelFile filename={"Payment Details"} element={<ReactSVG src={excel}
@@ -217,7 +217,7 @@ class TableHeader extends React.Component {
                             />}>
                                 <ExcelSheet dataSet={multiDataSet} name="Payment Details" />
                             </ExcelFile>
-                        }
+                        } */}
 
                         {this.props.Params === null ?
                             <ReactSVG src={print} onClick={this.Notification} /> :

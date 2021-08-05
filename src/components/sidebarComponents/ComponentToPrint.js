@@ -22,9 +22,11 @@ export default class ComponentToPrint extends React.Component {
                         <div className="printContainer">
                             {item.normalProduct.length>0&&<>                          
                             <div className="canteenDetails">
+                                
                                 <div>Golden Palm Canteen</div>
                                 <div>Chennai</div>
                                 <div>Grocery</div>
+                                
                             </div>
                             <div className="orderDetailsContainer">
                                 <div className="orderValues">
@@ -60,7 +62,7 @@ export default class ComponentToPrint extends React.Component {
                                 </div>
                             </div>
                             <div className="printtable">
-                                <table style={{ width: "100%" }}>
+                                <table style={{ width: "55%" }}>
                                 <thead>
                                     <tr>
                                         <th>S.No</th>
@@ -155,7 +157,7 @@ export default class ComponentToPrint extends React.Component {
                                         </div>
                                     </div>
                                     <div className="printtable">
-                                        <table style={{ width: "100%" }}>
+                                        <table style={{ width: "55%" }}>
                                             <tr>
                                                 <th>S.No</th>
                                                 <th>Index</th>
