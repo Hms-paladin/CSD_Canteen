@@ -1,6 +1,7 @@
 .printContainer {
   /* padding: 100px 280px 0px 280px; */
   padding: 0;
+  /* height: 100%; */
 }
 .printContainer div{
   font-family: 'Courier New';
@@ -26,6 +27,7 @@
   padding-bottom: 30px;
   border-bottom: 0.5px solid black;
   width:40%;
+  /* font-size: 20px; */
 }
 
 .printtable thead tr th{text-align: center; }
@@ -55,13 +57,13 @@
 }
 
 .orderValues {
-  display: flex;
-  width:38%;
+  /* display: flex; */
+  width:70%; 
 }
 
 
 .orderKey {
-  width: 80px;
+  width: 100%;
 }
 
 .orderValuesCol {

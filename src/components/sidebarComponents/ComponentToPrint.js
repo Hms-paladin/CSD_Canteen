@@ -18,24 +18,26 @@ export default class ComponentToPrint extends React.Component {
                 {this.state.productDetails.map((item) => {
                     const orderDetailsLength = item.orderDetails?.length
                     return (
-                       
+
                         <div className="printContainer">
-                            {item.normalProduct.length>0&&<>                          
-                            <div className="canteenDetails">
-                                
-                                <div>Golden Palm Canteen</div>
-                                <div>Chennai</div>
-                                <div>Grocery</div>
-                                
-                            </div>
-                            <div className="orderDetailsContainer">
-                                <div className="orderValues">
-                                    <div className="orderKey">
-                                        <div>Card No</div>
-                                        <div>Name</div>
-                                        <div>Mobile</div>
-                                    </div>
-                                    <div className="orderValuesCol">
+                            {item.normalProduct.length > 0 && <>
+                                <div className="canteenDetails">
+
+                                    <div>Golden Palm Canteen</div>
+                                    <div>Chennai</div>
+                                    <div>Grocery</div>
+
+                                </div>
+                                <div className="orderDetailsContainer">
+                                    <div className="orderValues">
+                                        <div className="orderKey">
+                                            <div>Card No  :{item.wholeDetails.cardNumber}</div>
+                                            <div>Name     :{item.wholeDetails.userName}</div>
+                                            <div>Mobile   :{item.wholeDetails.mobile_number}</div>
+                                            <div>Order No :{item.wholeDetails.orderNumber}</div>
+                                            <div>Order Dt :{moment(item.wholeDetails.orderDate).format("DD/MM/yyyy")}</div>
+                                        </div>
+                                        {/* <div className="orderValuesCol">
                                         <div>:</div>
                                         <div>:</div>
                                         <div>:</div>
@@ -44,9 +46,9 @@ export default class ComponentToPrint extends React.Component {
                                         <div>{item.wholeDetails.cardNumber}</div>
                                         <div>{item.wholeDetails.userName}</div>
                                         <div>{item.wholeDetails.mobile_number}</div>
+                                    </div> */}
                                     </div>
-                                </div>
-                                <div className="orderValues">
+                                    {/* <div className="orderValues">
                                     <div className="orderKey">
                                         <div>Order No</div>
                                         <div>Order Dt</div>
@@ -59,43 +61,43 @@ export default class ComponentToPrint extends React.Component {
                                         <div>{item.wholeDetails.orderNumber}</div>
                                         <div>{moment(item.wholeDetails.orderDate).format("DD/MM/yyyy")}</div>
                                     </div>
+                                </div> */}
                                 </div>
-                            </div>
-                            <div className="printtable">
-                                <table style={{ width: "50px" }}>
-                                <thead>
-                                    <tr>
-                                        <th>S.No</th>
-                                        <th>Index</th>
-                                        <th>Item Description</th>
-                                        <th>Qty</th>
-                                        <th>Rate+TAX</th>
-                                        <th>Amount</th>
-                                    </tr>
-                                    </thead>
-                                    {item.normalProduct.map((data, index) => {
-                                        return (
-                                            <>
-                                            {/* <tbody> */}
-                                                <tr>
-                                                    <td>{index + 1}</td>
-                                                    <td>{data.indexNumber}</td>
-                                                    <td>{data.product}</td>
-                                                    <td>{data.productQty}</td>
-                                                    <td>{data.productRate.toString().includes(".") ? data.productRate : data.productRate + ".00"}</td>
-                                                    <td>{data.productAmount.toString().includes(".") ? data.productAmount : data.productAmount + ".00"}</td>
-                                                    
-                                                </tr>
-                                                {/* <tr></tr>
+                                <div className="printtable">
+                                    <table style={{ width: "40%",fontSize:"13px" }}>
+                                        <thead>
+                                            <tr>
+                                                <th>Sl.</th>
+                                                <th>Index</th>
+                                                <th>Item Desc</th>
+                                                <th>Qty</th>
+                                                <th>Rate</th>
+                                                <th>Amount</th>
+                                            </tr>
+                                        </thead>
+                                        {item.normalProduct.map((data, index) => {
+                                            return (
+                                                <>
+                                                    {/* <tbody> */}
+                                                    <tr>
+                                                        <td>{index + 1}</td>
+                                                        <td>{data.indexNumber}</td>
+                                                        <td>{data.product}</td>
+                                                        <td>{data.productQty}</td>
+                                                        <td>{data.productRate.toString().includes(".") ? data.productRate : data.productRate + ".00"}</td>
+                                                        <td>{data.productAmount.toString().includes(".") ? data.productAmount : data.productAmount + ".00"}</td>
+
+                                                    </tr>
+                                                    {/* <tr></tr>
                                                 <tr></tr>
                                                 <tr></tr>
                                                 <tr></tr> */}
-                                                {/* </tbody> */}
-                                               {/* {(index+1)===item.normalProduct.length&& 
+                                                    {/* </tbody> */}
+                                                    {/* {(index+1)===item.normalProduct.length&& 
                                                 <tr ><td></td><td></td><td></td><td></td><td></td><td style={{whiteSpace: 'nowrap'}}><div style={{marginTop:"80px",marginBottom:"0px"}}>Convenience Fee 10</div></td></tr>
                                                 } */}
-                                                {/* <tr><div style={{width:"100%",paddingLeft:"50px",marginTop:"30px",display:"flex",justifyContent:"flex-end"}}>Convenience Fee 10</div></tr> */}
-                                                {/* {orderDetailsLength === index + 1 && <tfoot>
+                                                    {/* <tr><div style={{width:"100%",paddingLeft:"50px",marginTop:"30px",display:"flex",justifyContent:"flex-end"}}>Convenience Fee 10</div></tr> */}
+                                                    {/* {orderDetailsLength === index + 1 && <tfoot>
                                                         <tr>
                                                             <td></td>
                                                             <td></td>
@@ -104,17 +106,17 @@ export default class ComponentToPrint extends React.Component {
                                                             <td>{item.orderTotalAmount}</td>
                                                         </tr>
                                                     </tfoot>} */}
-                                            </>
-                                        )
-                                       
-                                    })}
-                                     
-                                </table>
+                                                </>
+                                            )
 
-                                
-                            </div></>}
-                            
-                            
+                                        })}
+
+                                    </table>
+
+
+                                </div></>}
+
+
 
                             {item.liquorProduct.length > 0 &&
                                 <div className="liquorHeader">
@@ -126,22 +128,14 @@ export default class ComponentToPrint extends React.Component {
                                     <div className="orderDetailsContainer">
                                         <div className="orderValues">
                                             <div className="orderKey">
-                                                <div>Card No</div>
-                                                <div>Name</div>
-                                                <div>Mobile</div>
-                                            </div>
-                                            <div className="orderValuesCol">
-                                                <div>:</div>
-                                                <div>:</div>
-                                                <div>:</div>
-                                            </div>
-                                            <div>
-                                                <div>{item.wholeDetails.cardNumber}</div>
-                                                <div>{item.wholeDetails.userName}</div>
-                                                <div>{item.wholeDetails.mobile_number}</div>
+                                                <div>Card No  : {item.wholeDetails.cardNumber}</div>
+                                                <div>Name     : {item.wholeDetails.userName}</div>
+                                                <div>Mobile   : {item.wholeDetails.mobile_number}</div>
+                                                <div>Order No : {item.wholeDetails.orderNumber} </div>
+                                                <div>Order Dt : {moment(item.wholeDetails.orderDate).format("DD/MM/yyyy")}</div>
                                             </div>
                                         </div>
-                                        <div className="orderValues">
+                                        {/* <div className="orderValues">
                                             
                                             <div className="orderKey">
                                                 <div>Order No</div>
@@ -155,16 +149,16 @@ export default class ComponentToPrint extends React.Component {
                                                 <div>{item.wholeDetails.orderNumber}</div>
                                                 <div>{moment(item.wholeDetails.orderDate).format("DD/MM/yyyy")}</div>
                                             </div>
-                                        </div>
+                                        </div> */}
                                     </div>
                                     <div className="printtable">
-                                        <table style={{ width: "55%" }}>
+                                        <table style={{ width: "40%",fontSize:"13px"}}>
                                             <tr>
-                                                <th>S.No</th>
+                                                <th>Sl.</th>
                                                 <th>Index</th>
-                                                <th>Item Description</th>
+                                                <th>Item Desc</th>
                                                 <th>Qty</th>
-                                                <th>Rate+TAX</th>
+                                                <th>Rate</th>
                                                 <th>Amount</th>
                                             </tr>
                                             {item.liquorProduct.map((liquorData, index) => {
@@ -184,19 +178,20 @@ export default class ComponentToPrint extends React.Component {
                                             })}
 
                                         </table>
-                                        
+
                                     </div>
-                                 
+
                                 </div>
                             }
-                            <div>Convenience fee   10</div>
-                            <br/>
-                            <br/>
-                            <br/>
-                            <br/>
-                            <br/>
-                            <br/>
-                            <br/>
+                            <div>Convenience fee : Rs.10</div>
+                            <br />
+                            <br />
+                            <br />
+                            <br />
+                            <br />
+                            <br />
+                            <br />
+                            <div>.</div>
                         </div>
                     )
                 })}
