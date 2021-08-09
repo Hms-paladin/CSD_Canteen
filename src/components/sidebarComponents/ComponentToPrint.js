@@ -62,7 +62,7 @@ export default class ComponentToPrint extends React.Component {
                                 </div>
                             </div>
                             <div className="printtable">
-                                <table style={{ width: "55%" }}>
+                                <table style={{ width: "50px" }}>
                                 <thead>
                                     <tr>
                                         <th>S.No</th>
@@ -142,6 +142,7 @@ export default class ComponentToPrint extends React.Component {
                                             </div>
                                         </div>
                                         <div className="orderValues">
+                                            
                                             <div className="orderKey">
                                                 <div>Order No</div>
                                                 <div>Order Dt</div>
@@ -188,7 +189,14 @@ export default class ComponentToPrint extends React.Component {
                                  
                                 </div>
                             }
-                            <div style={{marginBottom:"55px"}}>Convenience fee   10</div>
+                            <div>Convenience fee   10</div>
+                            <br/>
+                            <br/>
+                            <br/>
+                            <br/>
+                            <br/>
+                            <br/>
+                            <br/>
                         </div>
                     )
                 })}

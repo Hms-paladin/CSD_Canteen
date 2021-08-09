@@ -14,7 +14,7 @@
   margin-bottom: 20px;
   width: 60%;
 }
-.canteenDetails div{width:100%;text-align: center;}
+.canteenDetails div{width:80%;text-align: center;}
 .canteenDetails .printtable table {
   display: flex;
   justify-content: left;
@@ -25,10 +25,12 @@
   justify-content: left;
   padding-bottom: 30px;
   border-bottom: 0.5px solid black;
+  width:40%;
 }
 
-.printtable thead tr th{text-align: left; padding-right: 6px;}
-.printtable tr td{text-align: left; padding-right: 20px;}
+.printtable thead tr th{text-align: center; }
+.printtable tr td{text-align: center;}
+
 
 .printtable tr:first-child {
   border: 2px dotted black;
@@ -48,20 +50,22 @@
 
 .orderDetailsContainer {
   display: flex;
-  justify-content: space-between;
+  /* justify-content: space-between; */
   width: 55%;
 }
 
 .orderValues {
   display: flex;
+  width:38%;
 }
 
+
 .orderKey {
-  width: 85px;
+  width: 80px;
 }
 
 .orderValuesCol {
-  margin-right: 10px;
+  margin-right: 4px;
 }
 
 /* pickList printTable css  */
